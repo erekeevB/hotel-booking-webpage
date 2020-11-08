@@ -11,9 +11,9 @@ const ProfileNav = (props) => {
 
     return (
 
-        <div className={s.profileNav}>
+        <div className={s.wrapper}>
 
-            <div onClick={() => setIsActive(!isActive)}>
+            <div className={s.profileNav} onClick={() => setIsActive(!isActive)}>
 
                 <HamburgerIcon />
                 <UserIcon />

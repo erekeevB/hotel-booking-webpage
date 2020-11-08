@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Login from '../Authentification/Login';
 import Registration from '../Authentification/Registration';
@@ -7,11 +7,13 @@ import s from './Main.module.css'
 
 const Main = () => {
 
+    let [booking, setBooking] = useState(false);
+
     return(
 
-        <div className={s.main}>
+        <div onScroll={() => console.log("AAAA")} className={s.main}>
 
-            <Header />
+            <Header booking = {booking} setBooking = {setBooking} />
 
             <Switch >
               <Route path='/login' component={Login} />
