@@ -1,10 +1,12 @@
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import React from 'react';
+import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { CloseIcon } from '../../assets/Icons';
+import { registerUserThunk } from '../../redux/authReducer';
 import s from './Authentication.module.css';
 
-const Registration = () => {
+const Registration = (props) => {
 
     let history = useHistory();
 
@@ -47,8 +49,9 @@ const Registration = () => {
                 }}
                 onSubmit={(values, { setSubmitting }) => {
                     setSubmitting(true);
-                    alert(JSON.stringify(values, null, 2));
+                    props.registerUserThunk(values)
                     setSubmitting(false);
+                    closeForm();
                 }}
             >
                 {({ isSubmitting }) => (
@@ -87,4 +90,4 @@ const Registration = () => {
 
 }
 
-export default Registration;
+export default connect(null, {registerUserThunk})(Registration);

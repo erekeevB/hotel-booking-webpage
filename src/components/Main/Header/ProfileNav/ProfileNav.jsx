@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { HamburgerIcon, UserIcon } from '../../../../assets/Icons';
-import { loginUserThunk, logoutThunk } from '../../../../redux/authReducer';
 import s from './ProfileNav.module.css'
 
 const ProfileNav = (props) => {

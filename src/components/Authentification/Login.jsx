@@ -6,7 +6,7 @@ import { CloseIcon } from '../../assets/Icons';
 import { loginUserThunk } from '../../redux/authReducer';
 import s from './Authentication.module.css';
 
-const Login = () => {
+const Login = (props) => {
 
     let history = useHistory();
 
@@ -38,8 +38,9 @@ const Login = () => {
                 onSubmit={(values, { setSubmitting }) => {
                     setSubmitting(true);
                     debugger
-                    loginUserThunk(values)
+                    props.loginUserThunk(values)
                     setSubmitting(false);
+                    closeForm();
                 }}
             >
                 {({ isSubmitting }) => (
