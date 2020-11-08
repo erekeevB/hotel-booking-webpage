@@ -1,4 +1,4 @@
-import { getMe, loginAPI, logoutAPI } from "../API/auth";
+import { getMe, loginAPI, logoutAPI, registerAPI } from "../API/auth";
 
 const SET_AUTH = 'SET_AUTH';
 const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
@@ -6,12 +6,15 @@ const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
 let initialState = {
 
     profile: {
-        username: 'erekeevB',
-        city: 'Aqtobe',
-        email: 'batur-2000@mail.ru'
+        firstName: '',
+        lastName: '',
+        email: '',
+        phoneNumber: ''
+        
     },
-    isAuth: 1,
-    isFetching: false
+    isAuth: 0,
+    isFetching: false,
+    error: ''
 
 }
 
@@ -55,18 +58,22 @@ export const getSetAuth = () => (dispatch) => {
 
             dispatch(toggleFetch(false));
 
-            if (data) {
+            if (data.status === 0) {
 
                 let profile = {
-                    username: data.name,
-                    city: data.city, email: 
-                    data.email, 
+                    firstName: data.firstName,
+                    lastName: data.lastName,
+                    email: data.email,
+                    phoneNumber: data.phoneNumber
                 };
-                dispatch(setAuth({profile, isAuth: 1}));
+                dispatch(setAuth({profile, isAuth: 1, error: ''}));
 
             } else {
 
-                dispatch(setAuth({profile: {username: '', city: '', email: ''}, isAuth: 0}));
+                dispatch(setAuth({profile: {firstName: '',
+                                            lastName: '',
+                                            email: '',
+                                            phoneNumber: ''}, isAuth: 0}));
 
             }
 
@@ -74,24 +81,61 @@ export const getSetAuth = () => (dispatch) => {
 
 }
 
-export const loginUserThunk = (username, password) => (dispatch) => {
+export const loginUserThunk = (email, password) => (dispatch) => {
 
-    loginAPI(username, password)
+    loginAPI(email, password)
         .then(data => {
 
-            if (data) {
+            if (data.status === 0) {
 
                 let profile = {
-                    username: data.name,
-                    city: data.city, email: 
-                    data.email
+                    firstName: data.firstName,
+                    lastName: data.lastName,
+                    email: data.email,
+                    phoneNumber: data.phoneNumber
                 };
-                dispatch(setAuth({profile, isAuth: 1}));
+                dispatch(setAuth({profile, isAuth: 1, error: ''}));
 
             } else {
 
-                logoutAPI();
-                dispatch(setAuth({profile: {username: '', city: '', email: ''}, isAuth: 0}));
+                dispatch(setAuth({profile: {firstName: '',
+                                            lastName: '',
+                                            email: '',
+                                            phoneNumber: ''}, isAuth: 0, error: 'Invalid'}));
+
+            }
+
+        }).catch((err) => {
+
+            console.log(err);
+
+        })
+
+}
+
+export const registerUserThunk = (profile) => (dispatch) => {
+
+    registerAPI(profile)
+        .then(data => {
+
+            if (data.status === 0) {
+
+                let profile = {
+                    firstName: data.firstName,
+                    lastName: data.lastName,
+                    email: data.email,
+                    phoneNumber: data.phoneNumber
+                };
+                dispatch(setAuth({profile, isAuth: 1, error: ''}));
+
+            } else {
+
+                dispatch(setAuth({profile: {firstName: '',
+                                            lastName: '',
+                                            email: '',
+                                            phoneNumber: ''}, 
+                                    isAuth: 0, 
+                                    error: 'This user already exists'}));
 
             }
 
@@ -108,7 +152,10 @@ export const logoutThunk = () => (dispatch) => {
     logoutAPI()
         .then(()=>{
 
-            dispatch(setAuth({ id: '', login: '', isAuth: 0 }));
+            dispatch(setAuth({profile: {firstName: '',
+                                        lastName: '',
+                                        email: '',
+                                        phoneNumber: ''}, isAuth: 0, error: ''}));
 
         }).catch((err) => {
 

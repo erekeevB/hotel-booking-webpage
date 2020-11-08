@@ -1,19 +1,33 @@
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import React from 'react';
+import { useHistory } from 'react-router-dom';
+import { CloseIcon } from '../../assets/Icons';
 import s from './Authentication.module.css';
 
 const Registration = () => {
+
+    let history = useHistory();
+
+    let closeForm = () => {
+
+        history.push('/')
+
+    }
 
     return (
 
         <div className={s.authentication}>
 
             <Formik
-                initialValues={{ username: '', email: '', city: '', password: '' }}
+                initialValues={{ firstName: '', secondName: '', email: '', phoneNumber: '', password: '' }}
                 validate={values => {
                     const errors = {};
-                    if (!values.username) {
-                        errors.username = 'Required';
+                    if (!values.firstName) {
+                        errors.firstName = 'Required';
+                    }
+
+                    if (!values.secondName) {
+                        errors.secondName = 'Required';
                     }
 
                     if(!values.email) {
@@ -22,8 +36,8 @@ const Registration = () => {
                         errors.email = 'Invalid email address';
                     }
 
-                    if(!values.city) {
-                        errors.city = 'Required';
+                    if(!values.phoneNumber) {
+                        errors.phoneNumber = 'Required';
                     }
 
                     if(!values.password) {
@@ -38,16 +52,25 @@ const Registration = () => {
                 }}
             >
                 {({ isSubmitting }) => (
-                    <Form>
-                        <p>Username</p>
-                        <Field type="text" name="username" />
-                        <ErrorMessage name="username" component="div" />
+                    <Form className={s.authentication__form}>
+                        <div className={s.form__heading}>
+                            <div className={s.form__filler}></div>
+                            <div className={s.form__name}>Sign up</div>
+                            <div className={s.form__close} onClick={closeForm}><CloseIcon /></div>
+                        </div>
+
+                        <p>First Name</p>
+                        <Field type="text" name="firstName" />
+                        <ErrorMessage name="firstName" component="div" />
+                        <p>Second Name</p>
+                        <Field type="text" name="secondName" />
+                        <ErrorMessage name="secondName" component="div" />
                         <p>E-mail</p>
                         <Field type="email" name="email" />
                         <ErrorMessage name="email" component="div" />
-                        <p>City</p>
-                        <Field type="text" name="city" />
-                        <ErrorMessage name="city" component="div" />
+                        <p>Phone Number</p>
+                        <Field type="number" name="phoneNumber" maxLangth="11" />
+                        <ErrorMessage name="phoneNumber" component="div" />
                         <p>Password</p>
                         <Field type="password" name="password" />
                         <ErrorMessage name="password" component="div" />

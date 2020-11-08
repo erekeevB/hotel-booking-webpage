@@ -18,7 +18,7 @@ const ProfileNav = (props) => {
                 <HamburgerIcon />
                 <UserIcon />
 
-                {isActive ?
+                {!isActive ?
 
                     <div className={s.profileNav__userInfo}>
 
@@ -67,4 +67,4 @@ const mStP = (state) => {
 
 }
 
-export default connect(mStP, { loginUserThunk, logoutThunk })(ProfileNav);
+export default connect(mStP, {})(ProfileNav);

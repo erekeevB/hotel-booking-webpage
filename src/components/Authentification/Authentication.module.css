@@ -11,3 +11,69 @@
     align-items: center;
 
 }
+
+.authentication__form {
+
+    position: relative;
+    width: 300px;
+    box-sizing: border-box;
+    background: white;
+    padding: 20px;
+    border-radius: 30px;
+
+}
+
+.form__heading {
+
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.form__filler {
+
+    width: 25px;
+
+}
+
+.form__name {
+
+    position: relative;
+
+}
+
+.form__name::after {
+
+    position: absolute;
+    content: '';
+    top: 100%;
+    left: 0%;
+    border-bottom: 2px black solid;
+    width: 100%;
+    margin: 0 auto;
+
+}
+
+.form__close {
+
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: rgb(219, 219, 219);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.form__close:hover {
+
+    background: rgb(190, 190, 190);
+
+}
+
+.error {
+
+    color: red;
+
+}
