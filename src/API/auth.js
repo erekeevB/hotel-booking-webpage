@@ -2,24 +2,24 @@ import {Ajax} from './axiosCreater';
 
 export const loginAPI = (email, password) => {
 
-    Ajax.post('/signin', {email, password})
+    return Ajax.post('/signin', {email, password}).then(data=>data.data)
 
 }
 
 export const registerAPI = (profile) => {
 
-    Ajax.post('/register', {...profile})
+    return Ajax.post('/register', {...profile}).then(data=>data.data)
 
 }
 
 export const logoutAPI = () => {
 
-    Ajax.get('/signout')
+    return Ajax.get('/signout').then(data=>data.data)
 
 }
 
 export const getMe = () => {
 
-    Ajax.get('/currentuser')
+    return Ajax.get('/currentuser').then(data=>data.data)
 
 }

@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ProfileNav from './ProfileNav/ProfileNav';
 import s from './Header.module.css';
-import BookingForm from '../../Booking/BookingForm';
+import BookingForm from './Booking/BookingForm';
 
-const Header = ({setBooking, booking}) => {
+const Header = () => {
+
+    let [booking, setBooking] = useState(false);
     
     return (
 
@@ -11,17 +13,19 @@ const Header = ({setBooking, booking}) => {
 
             <div className={s.header}>
 
-                <div>Batyr B-)</div>
-                <div onClick={() => setBooking(!booking)}>Start Booking!</div>
+                <div>Frontovik</div>
+                {!booking ? <button onClick={() => setBooking(true)}>Start Booking!</button> : <div></div>}
                 <ProfileNav />
             </div>
-            <div className={ booking ?
-                    s.header__bookingForm + ' ' + s.header__bookingForm_active :
-                    s.header__bookingForm}>
+            {booking && 
+                <div className={s.header__bookingForm}>
 
-                    <BookingForm />
+                    <BookingForm setBooking={setBooking}/>
 
-                </div>
+                </div>}
+
+            {booking && 
+                <div onClick={() => setBooking(false)} className={s.header__bookingFrom_filler}></div>}
 
         </div>
 

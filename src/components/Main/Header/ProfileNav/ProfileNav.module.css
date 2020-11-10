@@ -10,7 +10,7 @@
 
     background: white;
     box-sizing: border-box;
-    padding: 20px;
+    padding: 10px;
     border-radius: 15px;
     position: absolute;
     top: 50px;
@@ -22,5 +22,6 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    z-index: 10;
 
 }

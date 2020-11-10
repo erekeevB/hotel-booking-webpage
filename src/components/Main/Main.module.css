@@ -1,11 +1,15 @@
 .main{
 
     background: gray;
+    background-image: url('./../../assets/background.jpg');
+    background-size: contain;
 
 }
 
 .main__content {
 
-    height: 1000px;
+    padding: 100px;
+    padding-bottom: 20px;
+    color: white;
 
 }
