@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import DatePicker from '../../../DatePicker/DatePicker';
+import DateComponent from '../../../DateComponent/DateComponent';
 import s from './BookingForm.module.css';
 
 const BookingForm = ({setBooking}) => {
@@ -36,7 +36,7 @@ const BookingForm = ({setBooking}) => {
                 <option>Hotel4</option>
 
             </select>
-            <DatePicker num={2} />
+            <DateComponent className={s.dateComponent} num={2} />
             <button>Search</button>
 
         </div>

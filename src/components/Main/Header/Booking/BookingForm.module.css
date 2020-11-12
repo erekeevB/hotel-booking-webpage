@@ -5,3 +5,10 @@
     column-gap: 10px;
 
 }
+
+.dateComponent {
+
+    position: absolute;
+    z-index: 100;
+
+}
