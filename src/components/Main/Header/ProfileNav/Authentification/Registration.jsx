@@ -61,7 +61,7 @@ const Registration = ({registerUserThunk, closeAuth}) => {
                     <Field type="email" name="email" />
                     <ErrorMessage name="email" component="div" />
                     <p>Phone Number</p>
-                    <Field type="number" name="phoneNumber" maxLangth="11" />
+                    <Field type="number" name="phoneNumber" maxLength="11" />
                     <ErrorMessage name="phoneNumber" component="div" />
                     <p>Password</p>
                     <Field type="password" name="password" />

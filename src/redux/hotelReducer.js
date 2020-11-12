@@ -1,23 +1,19 @@
 const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
-const SET_FROM_DATE = 'SET_FROM_DATE';
-const SET_TO_DATE = 'SET_TO_DATE';
+const SET_DATE = 'SET_DATE';
 
 let initialState = {
 
     hotels: {},
-    city: '',
-    date: {
-
-        from: '',
-        to: '',
-        isSetting: false
-
-    },
-    numOfPeople: {
-        adult: 0,
-        children: 0
-    },
     currentHotel: {},
+    input: {
+        city: '',
+        startDate: new Date(),
+        endDate: new Date(),
+        numOfPeople: {
+            adult: 0,
+            children: 0
+        }
+    },
     isFetching: false,
     error: ''
 
@@ -27,19 +23,18 @@ const hotelReducer = (state = initialState, action) => {
 
     switch (action.type) {
 
-        case SET_FROM_DATE: {
+        case SET_DATE: {
 
-            return {
-                ...state,
-                date: {...state.date, from: action.date, isSetting: true}
-            }
-
-        }
-        case SET_TO_DATE: {
-
-            return {
-                ...state,
-                date: {...state.date, to: action.date, isSetting: false}
+            if(action.dtype===1){
+                return {
+                    ...state,
+                    startDate: action.date
+                }
+            }else{
+                return {
+                    ...state,
+                    endDate: action.date
+                }
             }
 
         }
@@ -59,6 +54,8 @@ const hotelReducer = (state = initialState, action) => {
 }
 
 export const toggleFetch = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isFetching });
+
+export const setDate = (date, dtype) => ({ type: SET_DATE, date, dtype });
 
 export const getSetAuth = () => (dispatch) => {
 
