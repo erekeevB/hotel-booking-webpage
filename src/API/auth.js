@@ -1,8 +1,8 @@
 import {Ajax} from './axiosCreater';
 
-export const loginAPI = (email, password) => {
+export const loginAPI = ({username, password}) => {
 
-    return Ajax.post('/signin', {email, password}).then(data=>data.data)
+    return Ajax.post('/signin', {username, password}).then(data=>data.data)
 
 }
 

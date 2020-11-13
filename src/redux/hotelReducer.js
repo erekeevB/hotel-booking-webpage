@@ -3,7 +3,8 @@ const SET_DATE = 'SET_DATE';
 
 let initialState = {
 
-    hotels: {},
+    cities: ['Nur-Sultan', 'Temirtau', 'Aktobe', 'Pavlodar'],
+    hotels: [],
     currentHotel: {},
     input: {
         city: '',
@@ -28,12 +29,12 @@ const hotelReducer = (state = initialState, action) => {
             if(action.dtype===1){
                 return {
                     ...state,
-                    startDate: action.date
+                    input: {...state.input, startDate: action.date}
                 }
             }else{
                 return {
                     ...state,
-                    endDate: action.date
+                    input: {...state.input, endDate: action.date}
                 }
             }
 

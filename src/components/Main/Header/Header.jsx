@@ -6,6 +6,7 @@ import BookingForm from './Booking/BookingForm';
 const Header = () => {
 
     let [booking, setBooking] = useState(false);
+    let [profileNav, setProfileNav] = useState(false);
     
     return (
 
@@ -15,7 +16,7 @@ const Header = () => {
 
                 <div>Frontovik</div>
                 {!booking ? <button onClick={() => setBooking(true)}>Start Booking!</button> : <div></div>}
-                <ProfileNav />
+                <ProfileNav profileNav={profileNav} setProfileNav={setProfileNav}/>
             </div>
             {booking && 
                 <div className={s.header__bookingForm}>
@@ -25,7 +26,11 @@ const Header = () => {
                 </div>}
 
             {booking && 
-                <div onClick={() => setBooking(false)} className={s.header__bookingFrom_filler}></div>}
+                <div onClick={() => {
+                    setProfileNav(false)
+                    setBooking(false)
+                    }} 
+                    className={s.header__bookingFrom_filler}></div>}
 
         </div>
 

@@ -6,6 +6,7 @@ const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
 let initialState = {
 
     profile: {
+        username: '',
         firstName: '',
         lastName: '',
         email: '',
@@ -81,14 +82,15 @@ export const getSetAuth = () => (dispatch) => {
 
 }
 
-export const loginUserThunk = (email, password) => (dispatch) => {
+export const loginUserThunk = (username, password) => (dispatch) => {
 
-    loginAPI(email, password)
+    loginAPI(username, password)
         .then(data => {
 
             if (data.status === 0) {
 
                 let profile = {
+                    username: data.username,
                     firstName: data.firstName,
                     lastName: data.lastName,
                     email: data.email,

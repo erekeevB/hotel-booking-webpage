@@ -23,5 +23,6 @@
     flex-direction: column;
     justify-content: flex-start;
     z-index: 10;
+    outline: none;
 
 }

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { setDate } from '../../redux/hotelReducer';
 import s from './DateComponent.module.css'
 
-let DateComponent = ({className, num, setDate, startDate, endDate}) => {
+let DateComponent = ({num, setDate, startDate, endDate}) => {
     const dateRef = useRef();
 
     return (
@@ -12,7 +12,6 @@ let DateComponent = ({className, num, setDate, startDate, endDate}) => {
             <DatePicker
                 selected={startDate}
                 onChange={date => {
-                    console.log(date)
                     setDate(date, 1)
                 }}
                 onSelect={() => dateRef.current.deferFocusInput()}

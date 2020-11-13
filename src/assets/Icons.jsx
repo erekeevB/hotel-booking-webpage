@@ -46,3 +46,13 @@ export const CloseIcon = () => {
     )
 
 }
+
+export const DownCarot = () => {
+
+    return(
+        <svg viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" width="15" height="15">
+            <path d="M7.5 12L0 4h15l-7.5 8z" fill="currentColor"></path>
+        </svg>
+    )
+
+}

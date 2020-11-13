@@ -7,19 +7,18 @@ import s from './Authentication.module.css';
 
 const Login = ({loginUserThunk, closeAuth}) => {
 
-    
-
     return (
 
         <Formik
-            initialValues={{ email: '', password: '' }}
+            initialValues={{ username: '', password: '' }}
             validate={values => {
                 const errors = {};
-                if (!values.email) {
+                if (!values.username) {
                     errors.email = 'Required';
-                } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
-                    errors.email = 'Invalid email address';
-                }
+                } 
+                // else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
+                //     errors.email = 'Invalid email address';
+                // }
 
                 if (!values.password) {
                     errors.password = 'Required';
@@ -41,9 +40,9 @@ const Login = ({loginUserThunk, closeAuth}) => {
                         <div className={s.form__close} onClick={()=>closeAuth(0, 'unset')}><CloseIcon /></div>
                     </div>
 
-                    <p>E-mail</p>
-                    <Field type="email" name="email" />
-                    <ErrorMessage className={s.error} name="email" component="div" />
+                    <p>Username</p>
+                    <Field type="text" name="username" />
+                    <ErrorMessage className={s.error} name="username" component="div" />
                     <p>Password</p>
                     <Field type="password" name="password" />
                     <ErrorMessage className={s.error} name="password" component="div" />
