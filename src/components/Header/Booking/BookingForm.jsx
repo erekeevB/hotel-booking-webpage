@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import Select from 'react-select';
-import { setDate } from '../../../../redux/hotelReducer';
-import DateComponent from '../../../DateComponent/DateComponent';
+import { setCity, setDate } from '../../../redux/hotelReducer';
+import DateComponent from '../../DateComponent/DateComponent';
 import s from './BookingForm.module.css';
 
 const BookingForm = ({setBooking, ...props}) => {
@@ -25,16 +25,25 @@ const BookingForm = ({setBooking, ...props}) => {
 
             <Select 
                 className={s.select}
+                placeholder={"Choose your city..."}
+                defaultValue={props.city ? {label: props.city, value: props.city} : null}
+                onChange={(option) => {
+                    if(option){
+                        props.setCity(option.value)
+                    }else{
+                        props.setCity(option)
+                    }
+                }}
                 options={props.cities.map((el)=>{
                     return {value: el, label: el}
                 })}
-                isClearable 
+                isClearable
             />
             <DateComponent 
                 className={s.dateComponent} 
                 num={2} 
-                {...props.startDate} 
-                {...props.endDate}
+                startDate={props.startDate} 
+                endDate={props.endDate}
                 setDate={props.setDate}
             />
             <button>Search</button>
@@ -51,10 +60,11 @@ const mStP = (state) => {
 
         startDate: state.hotel.input.startDate,
         endDate: state.hotel.input.endDate,
+        city: state.hotel.input.city,
         cities: state.hotel.cities
 
     }
 
 }
 
-export default connect(mStP, {setDate})(BookingForm);
+export default connect(mStP, {setDate, setCity})(BookingForm);

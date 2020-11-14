@@ -1,24 +1,18 @@
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import React from 'react';
-import { connect } from 'react-redux';
-import { CloseIcon } from '../../../../../assets/Icons';
-import { registerUserThunk } from '../../../../../redux/authReducer';
+import { CloseIcon } from '../../../../assets/Icons';
 import s from './Authentication.module.css';
 
-const Registration = ({registerUserThunk, closeAuth}) => {
+const Registration = ({registerUserThunk, closeAuth, error}) => {
 
     return (
 
         <Formik
-            initialValues={{ firstName: '', lastName: '', email: '', phoneNumber: '', password: '' }}
+            initialValues={{ username: '', email: '', phoneNumber: '', password: '' }}
             validate={values => {
                 const errors = {};
-                if (!values.firstName) {
-                    errors.firstName = 'Required';
-                }
-
-                if (!values.lastName) {
-                    errors.lastName = 'Required';
+                if (!values.username) {
+                    errors.username = 'Required';
                 }
 
                 if (!values.email) {
@@ -38,9 +32,9 @@ const Registration = ({registerUserThunk, closeAuth}) => {
             }}
             onSubmit={(values, { setSubmitting }) => {
                 setSubmitting(true);
-                registerUserThunk(values)
-                setSubmitting(false);
-                closeAuth(0, 'unset');
+                registerUserThunk(values).then( () => closeAuth(0, 'unset') )
+                setSubmitting(false)
+                
             }}
         >
             {({ isSubmitting }) => (
@@ -51,21 +45,21 @@ const Registration = ({registerUserThunk, closeAuth}) => {
                         <div className={s.form__close} onClick={()=>closeAuth(0, 'unset')}><CloseIcon /></div>
                     </div>
 
-                    <p>First Name</p>
-                    <Field type="text" name="firstName" />
-                    <ErrorMessage name="firstName" component="div" />
-                    <p>Second Name</p>
-                    <Field type="text" name="lastName" />
-                    <ErrorMessage name="lastName" component="div" />
+                    <p>Username</p>
+                    <Field type="text" name="username" />
+                    <ErrorMessage className={s.error} name="username" component="div" />
                     <p>E-mail</p>
                     <Field type="email" name="email" />
-                    <ErrorMessage name="email" component="div" />
+                    <ErrorMessage className={s.error} name="email" component="div" />
                     <p>Phone Number</p>
                     <Field type="number" name="phoneNumber" maxLength="11" />
-                    <ErrorMessage name="phoneNumber" component="div" />
+                    <ErrorMessage className={s.error} name="phoneNumber" component="div" />
                     <p>Password</p>
                     <Field type="password" name="password" />
-                    <ErrorMessage name="password" component="div" />
+                    <ErrorMessage className={s.error} name="password" component="div" />
+
+                    {error && <p className={s.error}>{error}</p>}
+
                     <div><button type="submit" disabled={isSubmitting}>
                         Sign Up
                         </button></div>
@@ -78,4 +72,4 @@ const Registration = ({registerUserThunk, closeAuth}) => {
 
 }
 
-export default connect(null, { registerUserThunk })(Registration);
+export default Registration;

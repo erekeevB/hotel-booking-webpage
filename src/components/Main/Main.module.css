@@ -1,15 +1,5 @@
-.main{
+.main__content a {
 
-    background: gray;
-    background-image: url('./../../assets/background.jpg');
-    background-size: contain;
-
-}
-
-.main__content {
-
-    padding: 100px;
-    padding-bottom: 20px;
-    color: white;
+    color: red;
 
 }

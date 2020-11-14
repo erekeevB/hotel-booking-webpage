@@ -1,16 +1,14 @@
 import React from 'react';
-import Header from './Header/Header';
+import { Link } from 'react-router-dom';
 import s from './Main.module.css'
 
 const Main = () => {
 
     return (
 
-        <div className={s.main}>
-
-            <Header />
-
-            <div className={s.main__content}>
+        <div className={s.main__content}>
+                <Link to='/profile'>ProfilePage</Link> <br/>
+                <Link to='/admin'>AdminPage</Link> <br/>
                 Oppan Gangnam Style <br/>
                 Gangnam Style<br/>
                 Najeneun ddasarowun in-ganjeogin yeoja<br/>
@@ -73,9 +71,8 @@ const Main = () => {
                 Oppan Gangnam style<br/>
             </div>
 
-        </div>
-
     )
 
 }
+
 export default Main;

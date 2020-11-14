@@ -1,11 +1,9 @@
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import React from 'react';
-import { connect } from 'react-redux';
-import { CloseIcon } from '../../../../../assets/Icons';
-import { loginUserThunk } from '../../../../../redux/authReducer';
+import { CloseIcon } from '../../../../assets/Icons';
 import s from './Authentication.module.css';
 
-const Login = ({loginUserThunk, closeAuth}) => {
+const Login = ({loginUserThunk, closeAuth, error}) => {
 
     return (
 
@@ -14,7 +12,7 @@ const Login = ({loginUserThunk, closeAuth}) => {
             validate={values => {
                 const errors = {};
                 if (!values.username) {
-                    errors.email = 'Required';
+                    errors.username = 'Required';
                 } 
                 // else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
                 //     errors.email = 'Invalid email address';
@@ -27,9 +25,8 @@ const Login = ({loginUserThunk, closeAuth}) => {
             }}
             onSubmit={(values, { setSubmitting }) => {
                 setSubmitting(true);
-                loginUserThunk(values)
+                loginUserThunk(values).then( () => closeAuth(0, 'unset') )
                 setSubmitting(false);
-                closeAuth(0, 'unset');
             }}
         >
             {({ isSubmitting }) => (
@@ -46,6 +43,9 @@ const Login = ({loginUserThunk, closeAuth}) => {
                     <p>Password</p>
                     <Field type="password" name="password" />
                     <ErrorMessage className={s.error} name="password" component="div" />
+
+                    {error && <p className={s.error}>{error}</p>}
+
                     <div><button type="submit" disabled={isSubmitting}>
                         Sign In
                         </button></div>
@@ -58,4 +58,4 @@ const Login = ({loginUserThunk, closeAuth}) => {
 
 }
 
-export default connect(null, { loginUserThunk })(Login);
+export default Login;

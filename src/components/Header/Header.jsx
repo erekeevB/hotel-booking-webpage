@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import ProfileNav from './ProfileNav/ProfileNav';
 import s from './Header.module.css';
 import BookingForm from './Booking/BookingForm';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
 
     let [booking, setBooking] = useState(false);
-    let [profileNav, setProfileNav] = useState(false);
     
     return (
 
@@ -14,9 +14,14 @@ const Header = () => {
 
             <div className={s.header}>
 
-                <div>Frontovik</div>
-                {!booking ? <button onClick={() => setBooking(true)}>Start Booking!</button> : <div></div>}
-                <ProfileNav profileNav={profileNav} setProfileNav={setProfileNav}/>
+                <Link className={s.header__grid1} to='/'>Frontovik</Link>
+                <div>
+                    {!booking ? 
+                        <button onClick={() => setBooking(true)}>Start Booking!</button> : 
+                        <div></div>
+                    }
+                </div>
+                <div className={s.header__grid2}><ProfileNav setBooking={setBooking} /></div>
             </div>
             {booking && 
                 <div className={s.header__bookingForm}>
@@ -27,7 +32,6 @@ const Header = () => {
 
             {booking && 
                 <div onClick={() => {
-                    setProfileNav(false)
                     setBooking(false)
                     }} 
                     className={s.header__bookingFrom_filler}></div>}

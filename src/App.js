@@ -1,7 +1,7 @@
 import './App.css';
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
-import Main from './components/Main/Main';
+import Wrapper from './components/Wrapper/Wrapper';
 import { Provider } from 'react-redux';
 import store from './redux/redux-store';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -19,7 +19,7 @@ class App extends React.Component {
       <BrowserRouter>
         <Provider store={store} >
           <div className="App">
-            <Main />
+            <Wrapper />
           </div>
         </Provider>
       </BrowserRouter>

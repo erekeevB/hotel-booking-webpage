@@ -15,7 +15,7 @@
     grid-template-columns: 1fr 3fr 1fr;
     justify-content: space-between;
     align-items: center;
-    width: 80%;
+    width: 70%;
     margin: 0 auto;
 
 }
@@ -37,5 +37,17 @@
     height: 100vh;
     background: rgba(0, 0, 0, 0.4);
     z-index: 2;
+
+}
+
+.header__grid1 {
+
+    justify-self: self-start;
+
+}
+
+.header__grid2 {
+
+    justify-self: self-end;
 
 }

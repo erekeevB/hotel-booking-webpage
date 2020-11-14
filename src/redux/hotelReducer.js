@@ -1,5 +1,6 @@
 const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
 const SET_DATE = 'SET_DATE';
+const SET_CITY = 'SET_CITY'
 
 let initialState = {
 
@@ -39,6 +40,12 @@ const hotelReducer = (state = initialState, action) => {
             }
 
         }
+        case SET_CITY: {
+            return {
+                ...state,
+                input: {...state.input, city: action.city}
+            }
+        }
         case TOGGLE_IS_FETCHING: {
 
             return {
@@ -57,6 +64,8 @@ const hotelReducer = (state = initialState, action) => {
 export const toggleFetch = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isFetching });
 
 export const setDate = (date, dtype) => ({ type: SET_DATE, date, dtype });
+
+export const setCity = (city) => ({ type: SET_CITY, city });
 
 export const getSetAuth = () => (dispatch) => {
 

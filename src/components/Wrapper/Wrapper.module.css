@@ -1,0 +1,24 @@
+.wrapper{
+
+    background: gray;
+    background-image: url('./../../assets/background.jpg');
+    background-size: contain;
+    min-height: 100vh;
+
+}
+
+.wrapper__content {
+
+    width: 70%;
+    margin: 0 auto;
+    padding-top: 100px;
+    padding-bottom: 20px;
+    color: white;
+
+}
+
+a {
+
+    text-decoration: none;
+
+}

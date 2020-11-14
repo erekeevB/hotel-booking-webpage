@@ -8,7 +8,7 @@ export const loginAPI = ({username, password}) => {
 
 export const registerAPI = (profile) => {
 
-    return Ajax.post('/register', {...profile}).then(data=>data.data)
+    return Ajax.post('/registration', {...profile}).then(data=>data.data)
 
 }
 
@@ -20,6 +20,6 @@ export const logoutAPI = () => {
 
 export const getMe = () => {
 
-    return Ajax.get('/currentuser').then(data=>data.data)
+    return Ajax.get('/api/v1/currentuser').then(data=>data.data)
 
 }

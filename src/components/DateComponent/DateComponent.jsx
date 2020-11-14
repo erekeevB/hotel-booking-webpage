@@ -1,7 +1,5 @@
 import React, { useRef } from 'react';
 import DatePicker from 'react-datepicker';
-import { connect } from 'react-redux';
-import { setDate } from '../../redux/hotelReducer';
 import s from './DateComponent.module.css'
 
 let DateComponent = ({num, setDate, startDate, endDate}) => {
@@ -39,15 +37,4 @@ let DateComponent = ({num, setDate, startDate, endDate}) => {
     )
 }
 
-const mStP = (state) => {
-
-    return {
-
-        startDate: state.hotel.input.startDate,
-        endDate: state.hotel.input.endDate
-
-    }
-
-}
-
-export default connect(mStP, {setDate})(DateComponent);
+export default DateComponent;
