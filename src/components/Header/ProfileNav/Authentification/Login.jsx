@@ -25,7 +25,8 @@ const Login = ({loginUserThunk, closeAuth, error}) => {
             }}
             onSubmit={(values, { setSubmitting }) => {
                 setSubmitting(true);
-                loginUserThunk(values).then( () => closeAuth(0, 'unset') )
+                loginUserThunk(values)
+                closeAuth(0, 'unset')
                 setSubmitting(false);
             }}
         >

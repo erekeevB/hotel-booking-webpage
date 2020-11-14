@@ -50,10 +50,8 @@ let UserInfo = ({profileNav, setProfileNav, setLogin, setBooking, ...props}) => 
                     <button onClick={() => {
 
                         props.logoutThunk()
-                        .then(()=>{
-                            setBooking(false)
-                            setProfileNav(false)
-                        })
+                        setBooking(false)
+                        setProfileNav(false)
 
                     }}>Logout</button>
 

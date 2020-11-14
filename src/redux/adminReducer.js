@@ -1,41 +1,31 @@
 import { getMe, loginAPI, logoutAPI, registerAPI } from "../API/authAPI";
 
-const SET_AUTH = 'SET_AUTH';
-const SET_ERROR = 'SET_ERROR'
-const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
+const SET_USERS = 'SET_USERS';
+const DELETE_USER = 'DELETE_USER';
 
 let initialState = {
 
-    profile: {
-        id: '',
-        username: 'batur',
-        email: 'csdsdf',
-        phoneNumber: 'asdfasdfa',
-        role: 'Admin'
-        
-    },
-    isAuth: 1,
+    users: [],
     isFetching: false,
-    error: ''
 
 }
 
-const authReducer = (state = initialState, action) => {
+const adminReducer = (state = initialState, action) => {
 
     switch (action.type) {
 
-        case SET_AUTH: {
+        case SET_USERS: {
             return {
 
                 ...state,
-                ...action.profile
+                users: action.users
 
             }
         }
-        case SET_ERROR: {
+        case DELETE_USER: {
             return {
                 ...state,
-                error: action.error
+                user: [state.user.filter((user) => user.id !== action.userId)]
             }
         }
         case TOGGLE_IS_FETCHING: {
@@ -53,40 +43,13 @@ const authReducer = (state = initialState, action) => {
 
 }
 
-const setNullProfile = (dispatch) => {
+const setUsers = (users) => ({ type: SET_USERS, users });
 
-    dispatch(setAuth({
-        profile: {
-            username: '',
-            email: '',
-            phoneNumber: '',
-            role: ''
-        }, 
-        isAuth: 0
-    }));
+const deleteUser = (uderId) => ({ type: DELETE_USER, userId })
 
-}
+const toggleFetch = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isFetching });
 
-const setTempProfile = (dispatch, data) => {
-
-    let tempProfile = {
-        id: data.id,
-        username: data.username,
-        email: data.email,
-        phoneNumber: data.phoneNumber,
-        role: (data.roles.name==='ROLE_ADMIN') ? 'Admin' : 'User'
-    };
-    dispatch(setAuth({tempProfile, isAuth: 1}));
-
-}
-
-export const setAuth = (profile) => ({ type: SET_AUTH, profile });
-
-export const setError = (error) => ({ type: SET_ERROR, error })
-
-export const toggleFetch = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isFetching });
-
-export const getSetAuth = () => (dispatch) => {
+export const getSetUsers = () => (dispatch) => {
 
     dispatch(toggleFetch(true));
 
@@ -200,4 +163,4 @@ export const logoutThunk = () => (dispatch) => {
 
 }
 
-export default authReducer;
+export default adminReducer;

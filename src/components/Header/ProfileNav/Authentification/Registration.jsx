@@ -32,7 +32,8 @@ const Registration = ({registerUserThunk, closeAuth, error}) => {
             }}
             onSubmit={(values, { setSubmitting }) => {
                 setSubmitting(true);
-                registerUserThunk(values).then( () => closeAuth(0, 'unset') )
+                registerUserThunk(values)
+                closeAuth(0, 'unset')
                 setSubmitting(false)
                 
             }}
