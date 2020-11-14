@@ -8,13 +8,13 @@ let initialState = {
 
     profile: {
         id: '',
-        username: 'batur',
-        email: 'csdsdf',
-        phoneNumber: 'asdfasdfa',
-        role: 'Admin'
+        username: '',
+        email: '',
+        phoneNumber: '',
+        role: ''
         
     },
-    isAuth: 1,
+    isAuth: 0,
     isFetching: false,
     error: ''
 
