@@ -18,7 +18,7 @@ export const logoutAPI = () => {
 
 }
 
-export const getMe = () => {
+export const currentUserAPI = () => {
 
     return Ajax.get('/api/v1/currentuser').then(data=>data.data)
 

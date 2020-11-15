@@ -1,4 +1,4 @@
-import { getMe, loginAPI, logoutAPI, registerAPI } from "../API/authAPI";
+import { currentUserAPI, loginAPI, logoutAPI, registerAPI } from "../API/authAPI";
 
 const SET_AUTH = 'SET_AUTH';
 const SET_ERROR = 'SET_ERROR'
@@ -8,13 +8,13 @@ let initialState = {
 
     profile: {
         id: '',
-        username: '',
-        email: '',
-        phoneNumber: '',
-        role: ''
+        username: 'adsfa',
+        email: 'afdad',
+        phoneNumber: '3453453',
+        role: 'Admin'
         
     },
-    isAuth: 0,
+    isAuth: 1,
     isFetching: false,
     error: ''
 
@@ -28,7 +28,8 @@ const authReducer = (state = initialState, action) => {
             return {
 
                 ...state,
-                ...action.profile
+                profile: {...action.profile},
+                isAuth: action.isAuth
 
             }
         }
@@ -55,15 +56,15 @@ const authReducer = (state = initialState, action) => {
 
 const setNullProfile = (dispatch) => {
 
-    dispatch(setAuth({
-        profile: {
+    dispatch(setAuth(
+        {
             username: '',
             email: '',
             phoneNumber: '',
             role: ''
         }, 
-        isAuth: 0
-    }));
+        0
+    ));
 
 }
 
@@ -76,11 +77,11 @@ const setTempProfile = (dispatch, data) => {
         phoneNumber: data.phoneNumber,
         role: (data.roles.name==='ROLE_ADMIN') ? 'Admin' : 'User'
     };
-    dispatch(setAuth({tempProfile, isAuth: 1}));
+    dispatch(setAuth(tempProfile, 1));
 
 }
 
-export const setAuth = (profile) => ({ type: SET_AUTH, profile });
+export const setAuth = (profile, isAuth) => ({ type: SET_AUTH, profile, isAuth });
 
 export const setError = (error) => ({ type: SET_ERROR, error })
 
@@ -90,7 +91,7 @@ export const getSetAuth = () => (dispatch) => {
 
     dispatch(toggleFetch(true));
 
-    getMe()
+    currentUserAPI()
         .then((data) => {
 
             dispatch(toggleFetch(false));
@@ -126,7 +127,7 @@ export const loginUserThunk = (profile) => (dispatch) => {
 
             if (data.status === 0) {
 
-                setTempProfile(dispatch, data);
+                setTempProfile(dispatch, data.user);
 
                 dispatch(setError(''));
 
@@ -157,7 +158,7 @@ export const registerUserThunk = (profile) => (dispatch) => {
 
             if (data.status === 0) {
 
-                setTempProfile(dispatch, data);
+                setTempProfile(dispatch, data.user);
 
                 dispatch(setError(''));
 

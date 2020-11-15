@@ -1,9 +1,11 @@
 .wrapper{
 
-    background: gray;
-    background-image: url('./../../assets/background.jpg');
-    background-size: contain;
+    background: linear-gradient(-67deg,
+        var(--g1c1),
+        var(--g1c2)
+        );
     min-height: 100vh;
+    color: white;
 
 }
 
@@ -13,7 +15,6 @@
     margin: 0 auto;
     padding-top: 100px;
     padding-bottom: 20px;
-    color: white;
 
 }
 

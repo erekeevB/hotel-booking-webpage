@@ -1,5 +1,6 @@
 .authentication {
 
+    color: black;
     position: fixed;
     top: 0%;
     left: 0%;
@@ -13,14 +14,19 @@
 
 }
 
+.authentication__form p, .authentication__form input, .form__submit, .form_redirect {
+
+    margin: 10px 0;
+
+}
+
 .authentication__form {
 
     position: relative;
     width: 300px;
-    box-sizing: border-box;
     background: white;
-    padding: 20px;
-    border-radius: 30px;
+    padding: 30px;
+    border-radius: 10px;
 
 }
 
@@ -37,6 +43,24 @@
 
 }
 
+.form__close {
+
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.2s;
+
+}
+
+.form__close:hover {
+
+    background: rgb(190, 190, 190);
+
+}
+
 .form__name {
 
     position: relative;
@@ -47,34 +71,65 @@
 
     position: absolute;
     content: '';
-    top: 100%;
+    top: 0%;
     left: 0%;
     border-bottom: 2px black solid;
     width: 100%;
+    height: 100%;
     margin: 0 auto;
 
 }
 
-.form__close {
+.form__input {
 
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    background: rgb(219, 219, 219);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-}
-
-.form__close:hover {
-
-    background: rgb(190, 190, 190);
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 10px;
+    outline: none;
+    border: none;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.164);
+    font-size: 1rem;
 
 }
 
 .error {
 
     color: red;
+
+}
+
+.login__body {
+
+    margin: 20px 0;
+
+}
+
+.form__submit {
+
+    border: none;
+    color: white;
+    border-radius: 10px;
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    background: linear-gradient(90deg, var(--g1c2), var(--g1c1));
+    background-size: 150%;
+    background-position: left;
+    transform: scale(1);
+    transition: all 0.2s;
+
+}
+
+.form__submit:hover {
+
+    background-position: right;
+
+}
+
+.form__submit:active {
+
+    transform: scale(0.97);
 
 }

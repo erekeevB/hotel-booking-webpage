@@ -1,7 +1,8 @@
-import { ErrorMessage, Field, Form, Formik } from 'formik';
+import { Field, Form, Formik } from 'formik';
 import React from 'react';
 import { CloseIcon } from '../../../../assets/Icons';
 import s from './Authentication.module.css';
+import InputComponent from './InputComponent';
 
 const Registration = ({registerUserThunk, closeAuth, error}) => {
 
@@ -33,7 +34,6 @@ const Registration = ({registerUserThunk, closeAuth, error}) => {
             onSubmit={(values, { setSubmitting }) => {
                 setSubmitting(true);
                 registerUserThunk(values)
-                closeAuth(0, 'unset')
                 setSubmitting(false)
                 
             }}
@@ -46,25 +46,27 @@ const Registration = ({registerUserThunk, closeAuth, error}) => {
                         <div className={s.form__close} onClick={()=>closeAuth(0, 'unset')}><CloseIcon /></div>
                     </div>
 
-                    <p>Username</p>
-                    <Field type="text" name="username" />
-                    <ErrorMessage className={s.error} name="username" component="div" />
-                    <p>E-mail</p>
-                    <Field type="email" name="email" />
-                    <ErrorMessage className={s.error} name="email" component="div" />
-                    <p>Phone Number</p>
-                    <Field type="number" name="phoneNumber" maxLength="11" />
-                    <ErrorMessage className={s.error} name="phoneNumber" component="div" />
-                    <p>Password</p>
-                    <Field type="password" name="password" />
-                    <ErrorMessage className={s.error} name="password" component="div" />
+                    <div className={s.registration__body}>
+
+                    <Field type="text" name="username" placeholder='Username' component={InputComponent}/>
+                    <Field type="email" name="email" placeholder='Email' component={InputComponent}/>
+                    <Field type="number" name="phoneNumber" maxLength="11" 
+                        placeholder='Phone Number' component={InputComponent}/>
+                    <Field type="password" name="password" placeholder='Password' component={InputComponent}/>
 
                     {error && <p className={s.error}>{error}</p>}
 
-                    <div><button type="submit" disabled={isSubmitting}>
+                    </div>
+
+                    <div><button className={s.form__submit} type="submit" disabled={isSubmitting}>
                         Sign Up
                         </button></div>
-                    <div>Already have an account? <button onClick={()=>{closeAuth(1, 'hidden')}}>Sign In</button></div>
+                    <div className={s.form__redirect}>
+                        Already have an account? <a href='' onClick={(e)=>{
+                            e.preventDefault()
+                            closeAuth(1, 'hidden')
+                            }}>Sign In</a>
+                    </div>
                 </Form>
             )}
         </Formik>

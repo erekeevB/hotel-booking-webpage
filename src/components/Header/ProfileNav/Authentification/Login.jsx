@@ -1,7 +1,8 @@
-import { ErrorMessage, Field, Form, Formik } from 'formik';
+import { Field, Form, Formik } from 'formik';
 import React from 'react';
 import { CloseIcon } from '../../../../assets/Icons';
 import s from './Authentication.module.css';
+import InputComponent from './InputComponent';
 
 const Login = ({loginUserThunk, closeAuth, error}) => {
 
@@ -26,7 +27,6 @@ const Login = ({loginUserThunk, closeAuth, error}) => {
             onSubmit={(values, { setSubmitting }) => {
                 setSubmitting(true);
                 loginUserThunk(values)
-                closeAuth(0, 'unset')
                 setSubmitting(false);
             }}
         >
@@ -38,19 +38,24 @@ const Login = ({loginUserThunk, closeAuth, error}) => {
                         <div className={s.form__close} onClick={()=>closeAuth(0, 'unset')}><CloseIcon /></div>
                     </div>
 
-                    <p>Username</p>
-                    <Field type="text" name="username" />
-                    <ErrorMessage className={s.error} name="username" component="div" />
-                    <p>Password</p>
-                    <Field type="password" name="password" />
-                    <ErrorMessage className={s.error} name="password" component="div" />
+                    <div className={s.login__body}>
 
-                    {error && <p className={s.error}>{error}</p>}
+                        <Field placeholder='Username' type="text" name="username" component={InputComponent}/>
+                        <Field placeholder='Password' type="password" name="password" component={InputComponent}/>
 
-                    <div><button type="submit" disabled={isSubmitting}>
+                        {error && <p className={s.error}>{error}</p>}
+
+                    </div>
+
+                    <div><button className={s.form__submit} type="submit" disabled={isSubmitting}>
                         Sign In
                         </button></div>
-                    <div>Don't have an account? <button onClick={()=>{closeAuth(2, 'hidden')}}>Sign Up</button></div>
+                    <div className={s.form__redirect}>
+                        Don't have an account? <a href='' onClick={(e)=>{
+                            e.preventDefault()
+                            closeAuth(2, 'hidden')
+                            }}>Sign Up</a>
+                    </div>
                 </Form>
             )}
         </Formik>

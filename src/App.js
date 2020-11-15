@@ -5,6 +5,7 @@ import Wrapper from './components/Wrapper/Wrapper';
 import { Provider } from 'react-redux';
 import store from './redux/redux-store';
 import 'react-datepicker/dist/react-datepicker.css';
+import { getSetAuth } from './redux/authReducer';
 
 class App extends React.Component {
 

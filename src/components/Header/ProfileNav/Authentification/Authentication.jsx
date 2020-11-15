@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Login from './Login';
 import Registration from './Registration';
 import { registerUserThunk, loginUserThunk, setError } from '../../../../redux/authReducer';
 import s from './Authentication.module.css'
 import { connect } from 'react-redux';
 
-const Authentication = ({setLogin, isLogin, ...props}) => {
+const Authentication = ({setLogin, isLogin, isAuth, ...props}) => {
     
     const closeAuth = (num, string) => {
 
@@ -14,6 +14,16 @@ const Authentication = ({setLogin, isLogin, ...props}) => {
         props.setError('');
 
     }
+
+    useEffect(()=>{
+
+        if(isAuth){
+
+            closeAuth(0, 'unset')
+            
+        }
+
+    })
     
     return (
 
@@ -44,7 +54,8 @@ const mStP = (state) => {
 
     return {
 
-        error: state.auth.error
+        error: state.auth.error,
+        isAuth: state.auth.isAuth
 
     }
 

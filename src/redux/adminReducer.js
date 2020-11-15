@@ -1,11 +1,19 @@
-import { getMe, loginAPI, logoutAPI, registerAPI } from "../API/authAPI";
+import { geleteUserAPI, getUsersAPI } from "../API/adminAPI";
 
 const SET_USERS = 'SET_USERS';
 const DELETE_USER = 'DELETE_USER';
+const SET_ERROR = 'SET_ERROR';
+const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
 
 let initialState = {
 
-    users: [],
+    users: [
+        {id: 1, username: 'asdasd', email: 'asdad@mail.ru', phoneNumber: 23423423},
+        {id: 2, username: 'sdfs', email: 'qwe@mail.ru', phoneNumber: 23423423},
+        {id: 3, username: 'sdf', email: 'qweq@mail.ru', phoneNumber: 23423423},
+        {id: 4, username: 'qwe', email: 'dfghd@mail.ru', phoneNumber: 23423423},
+    ],
+    error: '',
     isFetching: false,
 
 }
@@ -45,119 +53,54 @@ const adminReducer = (state = initialState, action) => {
 
 const setUsers = (users) => ({ type: SET_USERS, users });
 
-const deleteUser = (uderId) => ({ type: DELETE_USER, userId })
+const deleteUser = (userId) => ({ type: DELETE_USER, userId });
+
+const setError = (error) => ({ type: SET_ERROR, error })
 
 const toggleFetch = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isFetching });
 
-export const getSetUsers = () => (dispatch) => {
+export const getSetUsersThunk = () => (dispatch) => {
 
     dispatch(toggleFetch(true));
 
-    getMe()
+    getUsersAPI()
         .then((data) => {
 
-            dispatch(toggleFetch(false));
-
-            if (data.status === 0) {
-
-                setTempProfile(dispatch, data);
-
-            } else {
-
-                setNullProfile(dispatch);
-
-            }
-
-            dispatch(setError(''));
+            setUsers(data.users);
+            setError('');
 
         })
-        .catch((err) => {
+        .catch(() => {
 
-            setNullProfile(dispatch);
-
-            dispatch(setError(''));
-
+            setUsers([]);
+            setError('');
 
         })
 
 }
 
-export const loginUserThunk = (profile) => (dispatch) => {
+export const deleteUserThunk = (userId) => (dispatch) => {
 
-    loginAPI(profile)
+    geleteUserAPI(userId)
         .then(data => {
 
             if (data.status === 0) {
 
-                setTempProfile(dispatch, data);
+                deleteUser(userId);
 
                 dispatch(setError(''));
 
             } else {
 
-                setNullProfile(dispatch);
-
-                dispatch(setError('Invalid Username or Password!'));
+                dispatch(setError(data.message));
 
             }
 
         })
-        .catch((err) => {
-
-            setNullProfile(dispatch);
+        .catch(() => {
 
             dispatch(setError('Something went wrong!'));
 
-
-        })
-
-}
-
-export const registerUserThunk = (profile) => (dispatch) => {
-
-    registerAPI(profile)
-        .then(data => {
-
-            if (data.status === 0) {
-
-                setTempProfile(dispatch, data);
-
-                dispatch(setError(''));
-
-            } else {
-
-                setNullProfile(dispatch);
-
-                dispatch(setError('This user already exists!'));
-
-            }
-
-        })
-        .catch((err) => {
-
-            setNullProfile(dispatch);
-
-            dispatch(setError('Something went wrong!'));
-
-        })
-
-}
-
-export const logoutThunk = () => (dispatch) => {
-
-    logoutAPI()
-        .then(()=>{
-
-            setNullProfile(dispatch);
-
-            dispatch(setError(''));
-
-        })
-        .catch((err) => {
-
-            setNullProfile(dispatch);
-
-            dispatch(setError(''));
 
         })
 
