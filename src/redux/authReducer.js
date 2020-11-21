@@ -8,13 +8,13 @@ let initialState = {
 
     profile: {
         id: '',
-        username: 'adsfa',
-        email: 'afdad',
-        phoneNumber: '3453453',
-        role: 'Admin'
+        username: '',
+        email: '',
+        phoneNumber: '',
+        role: ''
         
     },
-    isAuth: 1,
+    isAuth: 0,
     isFetching: false,
     error: ''
 
@@ -75,7 +75,8 @@ const setTempProfile = (dispatch, data) => {
         username: data.username,
         email: data.email,
         phoneNumber: data.phoneNumber,
-        role: (data.roles.name==='ROLE_ADMIN') ? 'Admin' : 'User'
+        // role: (data.roles.name==='ROLE_ADMIN') ? 'Admin' : 'User'
+        role: data.role
     };
     dispatch(setAuth(tempProfile, 1));
 
@@ -87,67 +88,83 @@ export const setError = (error) => ({ type: SET_ERROR, error })
 
 export const toggleFetch = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isFetching });
 
-export const getSetAuth = () => (dispatch) => {
+export const getSetAuthThunk = () => (dispatch) => {
 
-    dispatch(toggleFetch(true));
+    setTempProfile(dispatch, {
+        id: 1,
+        username: 'adsfa',
+        email: 'afdad',
+        phoneNumber: '3453453',
+        role: 'Admin'
+    });
 
-    currentUserAPI()
-        .then((data) => {
+    // dispatch(toggleFetch(true));
 
-            dispatch(toggleFetch(false));
+    // currentUserAPI()
+    //     .then((data) => {
 
-            if (data.status === 0) {
+    //         dispatch(toggleFetch(false));
 
-                setTempProfile(dispatch, data);
+    //         if (data.status === 0) {
 
-            } else {
+    //             setTempProfile(dispatch, data);
 
-                setNullProfile(dispatch);
+    //         } else {
 
-            }
+    //             setNullProfile(dispatch);
 
-            dispatch(setError(''));
+    //         }
 
-        })
-        .catch((err) => {
+    //         dispatch(setError(''));
 
-            setNullProfile(dispatch);
+    //     })
+    //     .catch((err) => {
 
-            dispatch(setError(''));
+    //         setNullProfile(dispatch);
+
+    //         dispatch(setError(''));
 
 
-        })
+    //     })
 
 }
 
 export const loginUserThunk = (profile) => (dispatch) => {
 
-    loginAPI(profile)
-        .then(data => {
+    setTempProfile(dispatch, {
+        id: 1,
+        username: 'adsfa',
+        email: 'afdad',
+        phoneNumber: '3453453',
+        role: 'Admin'
+    });  
 
-            if (data.status === 0) {
+    // loginAPI(profile)
+    //     .then(data => {
 
-                setTempProfile(dispatch, data.user);
+    //         if (data.status === 0) {
 
-                dispatch(setError(''));
+    //             setTempProfile(dispatch, data.user);
 
-            } else {
+    //             dispatch(setError(''));
 
-                setNullProfile(dispatch);
+    //         } else {
 
-                dispatch(setError('Invalid Username or Password!'));
+    //             setNullProfile(dispatch);
 
-            }
+    //             dispatch(setError('Invalid Username or Password!'));
 
-        })
-        .catch((err) => {
+    //         }
 
-            setNullProfile(dispatch);
+    //     })
+    //     .catch((err) => {
 
-            dispatch(setError('Something went wrong!'));
+    //         setNullProfile(dispatch);
+
+    //         dispatch(setError('Something went wrong!'));
 
 
-        })
+    //     })
 
 }
 
@@ -183,21 +200,23 @@ export const registerUserThunk = (profile) => (dispatch) => {
 
 export const logoutThunk = () => (dispatch) => {
 
-    logoutAPI()
-        .then(()=>{
+    setNullProfile(dispatch);
 
-            setNullProfile(dispatch);
+    // logoutAPI()
+    //     .then(()=>{
 
-            dispatch(setError(''));
+    //         setNullProfile(dispatch);
 
-        })
-        .catch((err) => {
+    //         dispatch(setError(''));
 
-            setNullProfile(dispatch);
+    //     })
+    //     .catch((err) => {
 
-            dispatch(setError(''));
+    //         setNullProfile(dispatch);
 
-        })
+    //         dispatch(setError(''));
+
+    //     })
 
 }
 

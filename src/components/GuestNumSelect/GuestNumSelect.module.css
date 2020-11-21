@@ -1,0 +1,81 @@
+.guestnumselect__wrapper {
+
+    text-align: start;
+    position: relative;
+
+    --unit: 2rem;
+
+}
+
+.selectfield__wrapper {
+
+    background: white;
+    position: absolute;
+    margin-top: 20px;
+    top: 100%;
+    right: 0%;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.212);
+
+}
+
+.selectfield {
+
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    padding: 15px;
+    height: var(--unit);
+    align-items: center;
+
+}
+
+.selectfield__name {
+
+    font-weight: 500;
+    margin-bottom: 2px;
+
+}
+
+.selectfield__name p {
+
+    margin: 0;
+
+}
+
+.selectfield__controls {
+
+    display: grid;
+    grid-template-columns: repeat(3, var(--unit));
+    justify-items: center;
+    align-items: center;
+
+}
+
+.selectfield__controls button {
+
+    border: none;
+    border-radius: 50%;
+    width: var(--unit);;
+    height: var(--unit);;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    outline: none;
+    border: 2px solid rgba(129, 114, 218, 0.425);
+    background: white;
+    transition: all 0.3s;
+
+}
+
+.selectfield__controls button:hover {
+
+    border: 2px solid rgba(84, 54, 255, 0.849);
+
+}
+
+.selectfield__num {
+
+    margin-bottom: 3px;
+
+}

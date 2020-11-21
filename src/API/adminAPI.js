@@ -6,7 +6,7 @@ export const getUsersAPI = () => {
 
 }
 
-export const geleteUserAPI = (userId) => {
+export const deleteUserAPI = (userId) => {
 
     return Ajax.post('/admin?userId='+userId+'&action=delete', {}).then(data=>data.data)
 

@@ -1,0 +1,191 @@
+.objectlist {
+
+    background: rgb(255, 255, 255);
+    color: rgb(19, 16, 16);
+    width: 100%;
+    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.24);
+
+}
+
+.objectlist__rows, .objectlist__labels, .objectlist__form {
+
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding-left: 20px;
+    height: 69px;
+    display: grid;
+    grid-template-columns: minmax(5rem, 200px) repeat(auto-fit, minmax(90px, 2fr));
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.objectlist__labels {
+
+    /* color: rgb(79, 82, 255); */
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 500;
+    border-bottom: 1px solid rgb(207, 207, 207);
+    background: linear-gradient(90deg, var(--g1c2), var(--g1c1));
+
+}
+
+.objectlist__form {
+
+    background: rgb(255, 255, 255);
+    border-bottom: 1px solid rgb(163, 163, 163);
+
+}
+
+.objectlist__rows:hover {
+
+    background: rgb(238, 238, 238);
+
+}
+
+.objectlist__rows>div, .objectlist__labels>div, .objectlist__form>div {
+
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 5px;
+
+}
+
+.objectlist__labels>div{
+
+    padding: 10px 5px;
+
+}
+
+.objectlist__form>input {
+
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 10px 0;
+    margin-right: 20px;
+    margin-left: 5px;
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 1rem;
+    border-bottom: 2px solid black;
+    color: rgba(94, 94, 94, 0.747);
+    transition: all 0.3s;
+
+}
+
+.objectlist__form>input:focus {
+
+    color: black;
+    padding-left: 5px;
+
+}
+
+.objectlist__form input::placeholder {
+
+    color: rgb(59, 59, 59);
+
+}
+
+.objectlist__button_wrapper {
+
+    justify-self: center;
+    width: 90px;
+}
+
+.objectlist__button {
+
+    width: 100%;
+    border: none;
+    padding: 10px;
+    color: white;
+    border-radius: 5px;
+    font-weight: 500;
+    font-size: 0.9rem;
+
+}
+
+.objectlist__button_delete {
+
+    background: linear-gradient(-90deg, var(--g2c1), var(--g2c2));
+    background-size: 150%;
+    background-position: left;
+    transition: background-position 0.3s;
+
+}
+
+.objectlist__button_add {
+
+    background: rgb(28, 164, 255);
+    background-size: 150%;
+    background-position: left;
+    transition: background-position 0.3s;
+
+}
+
+.objectlist__button_add:hover, .objectlist__button_delete:hover {
+
+    background-position: right;
+
+}
+
+.objectlist__seeMore {
+
+    position: relative;
+    padding: 10px;
+    text-align: center;
+    color: white;
+    display: block;
+    background: linear-gradient(90deg, var(--g2c2), var(--g2c1));
+    background-size: 150%;
+    background-position: left;
+    font-weight: 500;
+    transition: all 0.3s;
+
+}
+
+.objectlist__seeMore:hover {
+
+    background-position: right;
+
+}
+
+.objectlist__seeMore::before {
+
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0%;
+    left: 0%;
+    background-color: rgba(131, 131, 131, 0.13);
+    pointer-events: none;
+    transition: all 0.3s;
+
+}
+
+.objectlist__seeMore:hover.objectlist__seeMore::before {
+
+    background-color: rgba(131, 131, 131, 0);
+
+}
+
+.objectlist__empty {
+
+    padding: 30px;
+    font-size: 1.5rem;
+    text-align: center;
+    color: rgba(0, 0, 0, 0.384);
+    height: 100%;
+
+}
+
+.objectlist__empty:hover {
+
+    background: rgb(238, 238, 238);
+
+}

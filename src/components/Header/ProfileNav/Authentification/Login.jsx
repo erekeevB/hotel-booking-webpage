@@ -38,7 +38,7 @@ const Login = ({loginUserThunk, closeAuth, error}) => {
                         <div className={s.form__close} onClick={()=>closeAuth(0, 'unset')}><CloseIcon /></div>
                     </div>
 
-                    <div className={s.login__body}>
+                    <div className={s.form__body}>
 
                         <Field placeholder='Username' type="text" name="username" component={InputComponent}/>
                         <Field placeholder='Password' type="password" name="password" component={InputComponent}/>
@@ -51,10 +51,10 @@ const Login = ({loginUserThunk, closeAuth, error}) => {
                         Sign In
                         </button></div>
                     <div className={s.form__redirect}>
-                        Don't have an account? <a href='' onClick={(e)=>{
+                        Don't have an account? <span onClick={(e)=>{
                             e.preventDefault()
                             closeAuth(2, 'hidden')
-                            }}>Sign Up</a>
+                            }}>Sign Up</span>
                     </div>
                 </Form>
             )}

@@ -1,31 +1,36 @@
 import './App.css';
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import Wrapper from './components/Wrapper/Wrapper';
-import { Provider } from 'react-redux';
-import store from './redux/redux-store';
 import 'react-datepicker/dist/react-datepicker.css';
-import { getSetAuth } from './redux/authReducer';
+import Preloader from './components/Preloader/Preloader';
+import { initializeThunk } from './redux/appReducer';
+import { connect } from 'react-redux';
 
 class App extends React.Component {
 
   componentDidMount = () => {
-
-    //store.dispatch(getSetAuth());
+      
+    this.props.initializeThunk();
 
   }
 
   render() {
     return (
-      <BrowserRouter>
-        <Provider store={store} >
-          <div className="App">
-            <Wrapper />
-          </div>
-        </Provider>
-      </BrowserRouter>
+        <div className="App">
+            {!this.props.initialized ? 
+                <Preloader />:
+                <Wrapper />
+            }
+        </div>
     );
   }
 }
 
-export default App;
+let mStP = (state) => ({
+
+    initialized: state.app.initialized
+
+})
+
+export default withRouter(connect(mStP, {initializeThunk})(App));

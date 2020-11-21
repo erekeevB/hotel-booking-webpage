@@ -1,16 +1,28 @@
+.bookingForm__wrapper {
+
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 30px 0;
+    color: black;
+    text-align: start;
+
+}
+
 .bookingForm {
 
     display: flex;
     justify-content: center;
-    column-gap: 10px;
-    padding: 20px 0;
+    width: fit-content;
+    margin: 0 auto;
 
 }
 
-.dateComponent {
+.bookingForm__input {
 
-    position: absolute;
-    z-index: 100;
+    display: grid;
+    height: 200px;
+    grid-template-rows: 1fr 1fr;
 
 }
 

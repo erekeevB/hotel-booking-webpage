@@ -4,15 +4,16 @@ import s from './Authentication.module.css'
 
 const InputComponent = ({field, form: {errors}, ...props}) => {
 
-    console.log(field)
-
     return (
 
-        <input 
-            className={getIn(errors, field.name) ? s.form__input + ' ' + s.input_error : s.form__input} 
-            {...field}
-            {...props}
-            />
+        <div className={s.form__input__wrapper}>
+            <input 
+                className={getIn(errors, field.name) ? s.form__input + ' ' + s.input_error : s.form__input} 
+                {...field}
+                {...props}
+                />
+                <span className={s.form__input__filler}></span>
+        </div>
 
     )
 

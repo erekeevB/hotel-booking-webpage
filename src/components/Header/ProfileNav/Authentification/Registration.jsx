@@ -46,15 +46,15 @@ const Registration = ({registerUserThunk, closeAuth, error}) => {
                         <div className={s.form__close} onClick={()=>closeAuth(0, 'unset')}><CloseIcon /></div>
                     </div>
 
-                    <div className={s.registration__body}>
+                    <div className={s.form__body}>
 
-                    <Field type="text" name="username" placeholder='Username' component={InputComponent}/>
-                    <Field type="email" name="email" placeholder='Email' component={InputComponent}/>
-                    <Field type="number" name="phoneNumber" maxLength="11" 
-                        placeholder='Phone Number' component={InputComponent}/>
-                    <Field type="password" name="password" placeholder='Password' component={InputComponent}/>
+                        <Field type="text" name="username" placeholder='Username' component={InputComponent}/>
+                        <Field type="email" name="email" placeholder='Email' component={InputComponent}/>
+                        <Field type="number" name="phoneNumber" maxLength="11" 
+                            placeholder='Phone Number' component={InputComponent}/>
+                        <Field type="password" name="password" placeholder='Password' component={InputComponent}/>
 
-                    {error && <p className={s.error}>{error}</p>}
+                        {error && <p className={s.error}>{error}</p>}
 
                     </div>
 
@@ -62,10 +62,10 @@ const Registration = ({registerUserThunk, closeAuth, error}) => {
                         Sign Up
                         </button></div>
                     <div className={s.form__redirect}>
-                        Already have an account? <a href='' onClick={(e)=>{
+                        Already have an account? <span onClick={(e)=>{
                             e.preventDefault()
                             closeAuth(1, 'hidden')
-                            }}>Sign In</a>
+                            }}>Sign In</span>
                     </div>
                 </Form>
             )}

@@ -1,18 +1,20 @@
-import { geleteUserAPI, getUsersAPI } from "../API/adminAPI";
+import { deleteUserAPI, getUsersAPI } from "../API/adminAPI";
 
 const SET_USERS = 'SET_USERS';
 const DELETE_USER = 'DELETE_USER';
+const ADD_USER = 'ADD_USER';
+
 const SET_ERROR = 'SET_ERROR';
 const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
 
+
 let initialState = {
 
-    users: [
-        {id: 1, username: 'asdasd', email: 'asdad@mail.ru', phoneNumber: 23423423},
-        {id: 2, username: 'sdfs', email: 'qwe@mail.ru', phoneNumber: 23423423},
-        {id: 3, username: 'sdf', email: 'qweq@mail.ru', phoneNumber: 23423423},
-        {id: 4, username: 'qwe', email: 'dfghd@mail.ru', phoneNumber: 23423423},
-    ],
+    users: {
+        names: ['id','firstName', 'secondName', 'email', 'password'],
+        compactNames: ['id','firstName', 'email'],
+        list: []
+    },
     error: '',
     isFetching: false,
 
@@ -24,16 +26,20 @@ const adminReducer = (state = initialState, action) => {
 
         case SET_USERS: {
             return {
-
                 ...state,
-                users: action.users
-
+                users: {
+                    ...state.users, 
+                    list: [...action.users]
+                }
             }
         }
         case DELETE_USER: {
             return {
                 ...state,
-                user: [state.user.filter((user) => user.id !== action.userId)]
+                users: {
+                    ...state.users, 
+                    list: [...state.users.list.filter((user) => user.id !== action.userId)]
+                } 
             }
         }
         case TOGGLE_IS_FETCHING: {
@@ -61,48 +67,58 @@ const toggleFetch = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isFetching });
 
 export const getSetUsersThunk = () => (dispatch) => {
 
-    dispatch(toggleFetch(true));
+    let data = [
+        {id: 1, firstName: 'asdas', email: 'asdasda', secondName: 'asdasda'},
+        {id: 2, firstName: 'asdas', email: 'asdasda', secondName: 'asdasda'},
+        {id: 3, firstName: 'asdas', email: 'asdasda', secondName: 'asdasda'},
+        {id: 4, firstName: 'asdas', email: 'asdasda', secondName: 'asdasda'}
+    ]
 
-    getUsersAPI()
-        .then((data) => {
+    dispatch(setUsers(data));
 
-            setUsers(data.users);
-            setError('');
+    // dispatch(toggleFetch(true));
+    // debugger
+    // getUsersAPI()
+    //     .then((data) => {
 
-        })
-        .catch(() => {
+    //         dispatch(setUsers(data));
+    //         dispatch(setError(''));
 
-            setUsers([]);
-            setError('');
+    //     })
+    //     .catch(() => {
 
-        })
+    //         dispatch(setUsers([]));
+    //         dispatch(setError(''));
+
+    //     })
 
 }
 
 export const deleteUserThunk = (userId) => (dispatch) => {
 
-    geleteUserAPI(userId)
-        .then(data => {
+    dispatch(deleteUser(userId));
 
-            if (data.status === 0) {
+    // deleteUserAPI(userId)
+    //     .then(data => {
 
-                deleteUser(userId);
+    //         if (data.status === 0) {
 
-                dispatch(setError(''));
+    //             dispatch(deleteUser(userId));
 
-            } else {
+    //             dispatch(setError(''));
 
-                dispatch(setError(data.message));
+    //         } else {
 
-            }
+    //             dispatch(setError(data.message));
 
-        })
-        .catch(() => {
+    //         }
 
-            dispatch(setError('Something went wrong!'));
+    //     })
+    //     .catch(() => {
 
+    //         dispatch(setError('Something went wrong!'));
 
-        })
+    //     })
 
 }
 

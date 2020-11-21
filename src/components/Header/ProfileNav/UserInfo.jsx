@@ -12,15 +12,7 @@ let UserInfo = ({profileNav, setProfileNav, setLogin, setBooking, ...props}) => 
             {!props.isAuth ?
 
                 <div>
-
-                    <div>
-                        <button onClick={() => {
-                            setLogin(2)
-                            setProfileNav(false)
-                            setBooking(false)
-                            document.body.style.overflow = 'hidden'
-                        }}>Sign up</button>
-                    </div>
+                    
                     <div>
                         <button onClick={() => {
                             setLogin(1)
@@ -28,6 +20,14 @@ let UserInfo = ({profileNav, setProfileNav, setLogin, setBooking, ...props}) => 
                             setBooking(false)
                             document.body.style.overflow = 'hidden'
                         }}>Sign in</button>
+                    </div>
+                    <div>
+                        <button onClick={() => {
+                            setLogin(2)
+                            setProfileNav(false)
+                            setBooking(false)
+                            document.body.style.overflow = 'hidden'
+                        }}>Sign up</button>
                     </div>
 
                 </div> :

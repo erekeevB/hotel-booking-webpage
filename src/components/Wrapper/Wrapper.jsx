@@ -4,7 +4,7 @@ import Profile from '../Profile/Profile';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
 import s from './Wrapper.module.css';
-import Admin from '../Admin/Admin';
+import AdminContainer from '../Admin/AdminContainer';
 
 const Wrapper = () => {
 
@@ -22,7 +22,10 @@ const Wrapper = () => {
 
                     <Route path='/profile' component={Profile} />
 
-                    <Route path='/admin' component={Admin} />
+                    <Route 
+                        path='/admin/:parent?/:id?/:child?' 
+                        render={(match)=><AdminContainer match={match.match.params}/>} 
+                    />
 
                 </Switch>
 
