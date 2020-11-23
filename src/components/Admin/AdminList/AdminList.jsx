@@ -12,9 +12,11 @@ const AdminList = (
         createObjectThunk,
         isCompact,
         isAddable,
-        link,
+        isIdLinkable,
         params,
-        paramId
+        paramId,
+        isIdChangable,
+        parentId
     }
     ) => {
     
@@ -22,9 +24,11 @@ const AdminList = (
 
     let tempField = {}
 
-    for(let i = 1; i < objectNames.length; i = i+1){
+    for(let i = 0; i < objectNames.length; i = i+1){
 
-        tempField[objectNames[i]] = ''
+        if((!isIdChangable) && i !== 0){
+            tempField[objectNames[i]] = ''
+        }
 
     }
 
@@ -77,10 +81,10 @@ const AdminList = (
                 <div key={objectList[i][objectNames[0]]} className={s.objectlist__rows}>
 
                     {objectNames.map((name, index)=>{
-                        if(link && index===0){
+                        if(isIdLinkable && index===0){
                             return (
                                 <div>
-                                    <Link to={'/admin/'+params+'/'+objectList[i][name] +'/'+link}>
+                                    <Link to={'/admin/'+params+'/'+objectList[i][name]}>
                                         {objectList[i][name]}
                                     </Link>
                                 </div>
@@ -150,7 +154,7 @@ const AdminList = (
             {isAdd && 
                 <div className={s.objectlist__form}>
                     {objectNames.map((name, index) => {
-                        if(index===0){
+                        if(index===0 && !isIdChangable){
                             return <div>{name}</div>
                         }
                         return(

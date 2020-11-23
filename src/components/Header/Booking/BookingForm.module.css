@@ -21,7 +21,7 @@
 .bookingForm__input {
 
     display: grid;
-    height: 200px;
+    height: 100px;
     grid-template-rows: 1fr 1fr;
 
 }

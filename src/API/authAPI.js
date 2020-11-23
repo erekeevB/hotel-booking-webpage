@@ -23,3 +23,15 @@ export const currentUserAPI = () => {
     return Ajax.get('/api/v1/currentuser').then(data=>data.data)
 
 }
+
+export const getReservationAPI = () => {
+
+    return Ajax.get('./reserve/getallreservations').then(data=>data.data)
+
+}
+
+export const addReservationAPI = (reservation) => {
+
+    return Ajax.post('/reserve/addreservation', {...reservation}).then(data=>data.data)
+
+}

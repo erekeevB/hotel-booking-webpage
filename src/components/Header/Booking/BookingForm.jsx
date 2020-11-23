@@ -1,12 +1,13 @@
 import React, { useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import Select from 'react-select';
-import { changeGuestNum, setCity, setDate } from '../../../redux/hotelReducer';
+import { changeGuestNum, searchThunk, setCity, setDate, setGuestNum } from '../../../redux/searchReducer';
 import DateComponent from '../../DateComponent/DateComponent';
 import GuestNumSelect from '../../GuestNumSelect/GuestNumSelect';
 import s from './BookingForm.module.css';
 
-const BookingForm = ({setBooking, ...props}) => {
+const BookingForm = ({setBooking, startDate, endDate, city, adultNum, childrenNum, ...props}) => {
 
     useEffect( () => {
 
@@ -22,6 +23,25 @@ const BookingForm = ({setBooking, ...props}) => {
 
     window.addEventListener('scroll', ()=>setBooking(false))
 
+    let history = useHistory();
+
+    const handleSearch = () => {
+
+        setBooking(false)
+
+        let temp = {
+            city: city,
+            inDate: startDate,
+            outDate: endDate,
+            people: adultNum + childrenNum
+        }
+
+        props.searchThunk()
+
+        history.push('/results')
+
+    }
+
     return (
 
         <div className={s.bookingForm__wrapper}>
@@ -35,7 +55,7 @@ const BookingForm = ({setBooking, ...props}) => {
                             ref={selectRef}
                             className={s.select}
                             placeholder={"City..."}
-                            defaultValue={props.city ? {label: props.city, value: props.city} : null}
+                            defaultValue={city ? {label: city, value: city} : null}
                             onChange={(option) => {
                                 if(option){
                                     props.setCity(option.value)
@@ -54,8 +74,8 @@ const BookingForm = ({setBooking, ...props}) => {
                     <DateComponent
                         className={s.bookingForm__input} 
                         num={2} 
-                        startDate={props.startDate} 
-                        endDate={props.endDate}
+                        startDate={startDate} 
+                        endDate={endDate}
                         setDate={props.setDate}
                         firstDateHeader='Check In'
                         secondDateHeader='Check Out'
@@ -65,27 +85,12 @@ const BookingForm = ({setBooking, ...props}) => {
                     <GuestNumSelect
                         className={s.bookingForm__input}
                         headerText='Number of People'
-                        adultNum={props.adultNum}
-                        childrenNum={props.childrenNum}
+                        adultNum={adultNum}
+                        childrenNum={childrenNum}
                         changeGuestNum={props.changeGuestNum}
                     />
                 </div>
-                <button onClick={()=>{
-
-                    console.log(
-                        {
-                            city: props.city,
-                            date: {
-                                startDate: props.startDate,
-                                endDate: props.endDate
-                            },
-                            guestNum: {
-                                adult: props.adultNum,
-                                children: props.childrenNum
-                            }
-                        })
-
-                }}>Search</button>
+                <button onClick={handleSearch}>Search</button>
 
             </div>
 
@@ -99,17 +104,27 @@ const mStP = (state) => {
 
     return {
 
-        startDate: state.hotel.input.startDate,
-        endDate: state.hotel.input.endDate,
+        startDate: state.search.input.startDate,
+        endDate: state.search.input.endDate,
 
-        city: state.hotel.input.city,
-        cities: state.hotel.cities,
+        city: state.search.input.city,
+        cities: state.search.cities,
 
-        adultNum: state.hotel.input.numOfPeople.adult,
-        childrenNum: state.hotel.input.numOfPeople.children,
+        adultNum: state.search.input.numOfPeople.adult,
+        childrenNum: state.search.input.numOfPeople.children,
 
     }
 
 }
 
-export default connect(mStP, {setDate, setCity, changeGuestNum})(BookingForm);
+
+
+export default connect(
+    mStP,
+    {
+        setDate,
+        setCity,
+        changeGuestNum,
+        setGuestNum,
+        searchThunk
+    })(BookingForm);

@@ -15,7 +15,7 @@
     padding-left: 20px;
     height: 69px;
     display: grid;
-    grid-template-columns: minmax(5rem, 200px) repeat(auto-fit, minmax(90px, 2fr));
+    grid-template-columns: 100px repeat(auto-fit, minmax(90px, 2fr));
     justify-content: space-between;
     align-items: center;
 

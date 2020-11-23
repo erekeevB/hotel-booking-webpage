@@ -1,5 +1,5 @@
 import { getSetAuthThunk } from "./authReducer";
-import { getSetCitiesThunk } from "./hotelReducer";
+import { getSetCitiesThunk } from "./searchReducer";
 
 const INITIALIZE = 'INITIALIZE';
 
@@ -40,11 +40,19 @@ export const initializeThunk = () => (dispatch) => {
 
     // })
 
-    dispatch(getSetAuthThunk())
 
-    dispatch(getSetCitiesThunk());
+    let promise1 = dispatch(getSetAuthThunk()).then(()=>{
 
-    dispatch(initialize())
+        dispatch(initialize())
+
+    })
+
+
+    // dispatch(getSetAuthThunk())
+
+    // dispatch(getSetCitiesThunk());
+
+    // dispatch(initialize())
 
 }
 

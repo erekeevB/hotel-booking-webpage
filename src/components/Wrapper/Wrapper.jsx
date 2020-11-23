@@ -5,6 +5,7 @@ import Header from '../Header/Header';
 import Main from '../Main/Main';
 import s from './Wrapper.module.css';
 import AdminContainer from '../Admin/AdminContainer';
+import SearchPage from '../SearchPage/SearchPage';
 
 const Wrapper = () => {
 
@@ -26,6 +27,8 @@ const Wrapper = () => {
                         path='/admin/:parent?/:id?/:child?' 
                         render={(match)=><AdminContainer match={match.match.params}/>} 
                     />
+
+                    <Route path='/results' component={SearchPage} />
 
                 </Switch>
 

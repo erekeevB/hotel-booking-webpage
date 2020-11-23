@@ -1,7 +1,9 @@
-import { currentUserAPI, loginAPI, logoutAPI, registerAPI } from "../API/authAPI";
+import { addReservationAPI, currentUserAPI, getReservationAPI, loginAPI, logoutAPI, registerAPI } from "../API/authAPI";
 
 const SET_AUTH = 'SET_AUTH';
-const SET_ERROR = 'SET_ERROR'
+const SET_ERROR = 'SET_ERROR';
+const ADD_RESERVATION = 'ADD_RESERVATION';
+const SET_RESERVATIONS = 'SET_RESERVATIONs';
 const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
 
 let initialState = {
@@ -11,8 +13,9 @@ let initialState = {
         username: '',
         email: '',
         phoneNumber: '',
-        role: ''
-        
+        role: '',
+        currentReservations: [],
+        pastReservations: []
     },
     isAuth: 0,
     isFetching: false,
@@ -31,6 +34,27 @@ const authReducer = (state = initialState, action) => {
                 profile: {...action.profile},
                 isAuth: action.isAuth
 
+            }
+        }
+        case SET_RESERVATIONS: {
+            return {
+                ...state,
+                profile: {
+                    ...state.profile,
+                    currentReservations: [...action.reservation.current],
+                    pastReservations: [...action.reservation.past]
+                }
+            }
+        }
+        case ADD_RESERVATION: {
+            return {
+                ...state,
+                profile: {
+                    ...state.profile,
+                    currentReservations:
+                        state.profile.currentReservations ?
+                        [...state.profile.currentReservations, action.current] : [action.current]
+                }
             }
         }
         case SET_ERROR: {
@@ -75,8 +99,8 @@ const setTempProfile = (dispatch, data) => {
         username: data.username,
         email: data.email,
         phoneNumber: data.phoneNumber,
-        // role: (data.roles.name==='ROLE_ADMIN') ? 'Admin' : 'User'
-        role: data.role
+        role: (data.roles[0].name==='ROLE_ADMIN') ? 'Admin' : 'User'
+        // role: data.role
     };
     dispatch(setAuth(tempProfile, 1));
 
@@ -84,87 +108,91 @@ const setTempProfile = (dispatch, data) => {
 
 export const setAuth = (profile, isAuth) => ({ type: SET_AUTH, profile, isAuth });
 
+export const addReservation = (current) => ({type: ADD_RESERVATION, current})
+
+export const setReservations = (current, past) => ({type: SET_RESERVATIONS, current, past})
+
 export const setError = (error) => ({ type: SET_ERROR, error })
 
 export const toggleFetch = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isFetching });
 
 export const getSetAuthThunk = () => (dispatch) => {
 
-    setTempProfile(dispatch, {
-        id: 1,
-        username: 'adsfa',
-        email: 'afdad',
-        phoneNumber: '3453453',
-        role: 'Admin'
-    });
+    // setTempProfile(dispatch, {
+    //     id: 1,
+    //     username: 'adsfa',
+    //     email: 'afdad',
+    //     phoneNumber: '3453453',
+    //     role: 'Admin'
+    // });
 
-    // dispatch(toggleFetch(true));
+    dispatch(toggleFetch(true));
 
-    // currentUserAPI()
-    //     .then((data) => {
+    return currentUserAPI()
+        .then((data) => {
 
-    //         dispatch(toggleFetch(false));
+            dispatch(toggleFetch(false));
 
-    //         if (data.status === 0) {
+            if (data.status === 0) {
 
-    //             setTempProfile(dispatch, data);
+                setTempProfile(dispatch, data.user);
 
-    //         } else {
+            } else {
 
-    //             setNullProfile(dispatch);
+                setNullProfile(dispatch);
 
-    //         }
+            }
 
-    //         dispatch(setError(''));
+            dispatch(setError(''));
 
-    //     })
-    //     .catch((err) => {
+        })
+        .catch((err) => {
 
-    //         setNullProfile(dispatch);
+            setNullProfile(dispatch);
 
-    //         dispatch(setError(''));
+            dispatch(setError(''));
 
 
-    //     })
+        })
 
 }
 
 export const loginUserThunk = (profile) => (dispatch) => {
 
-    setTempProfile(dispatch, {
-        id: 1,
-        username: 'adsfa',
-        email: 'afdad',
-        phoneNumber: '3453453',
-        role: 'Admin'
-    });  
+    // setTempProfile(dispatch, {
+    //     id: 1,
+    //     username: 'adsfa',
+    //     email: 'afdad',
+    //     phoneNumber: '3453453',
+    //     role: 'Admin'
+    // });  
 
-    // loginAPI(profile)
-    //     .then(data => {
+    loginAPI(profile)
+        .then(data => {
 
-    //         if (data.status === 0) {
+            if (data.status === 0) {
 
-    //             setTempProfile(dispatch, data.user);
+                setTempProfile(dispatch, data.user);
 
-    //             dispatch(setError(''));
+                dispatch(setError(''));
 
-    //         } else {
+            } else {
 
-    //             setNullProfile(dispatch);
+                setNullProfile(dispatch);
 
-    //             dispatch(setError('Invalid Username or Password!'));
+                dispatch(setError('Invalid Username or Password!'));
 
-    //         }
+            }
 
-    //     })
-    //     .catch((err) => {
+        })
+        .catch((err) => {
 
-    //         setNullProfile(dispatch);
+            setNullProfile(dispatch);
 
-    //         dispatch(setError('Something went wrong!'));
+            dispatch(setError('Something went wrong!'));
 
 
-    //     })
+        })
 
 }
 
@@ -200,23 +228,63 @@ export const registerUserThunk = (profile) => (dispatch) => {
 
 export const logoutThunk = () => (dispatch) => {
 
-    setNullProfile(dispatch);
+    // setNullProfile(dispatch);
 
-    // logoutAPI()
-    //     .then(()=>{
+    logoutAPI()
+        .then(()=>{
 
-    //         setNullProfile(dispatch);
+            setNullProfile(dispatch);
 
-    //         dispatch(setError(''));
+            dispatch(setError(''));
 
-    //     })
-    //     .catch((err) => {
+        })
+        .catch((err) => {
 
-    //         setNullProfile(dispatch);
+            setNullProfile(dispatch);
 
-    //         dispatch(setError(''));
+            dispatch(setError(''));
 
-    //     })
+        })
+
+}
+
+export const getSetReservationThunk = () => (dispatch) => {
+
+    getReservationAPI()
+        .then((data)=>{
+
+            if(data.status==0){
+                setReservations(data.currentReservations, data.pastReservations)
+            }else{
+                setReservations([], [])
+            }
+
+        })
+        .catch(()=>{
+            setReservations([], [])
+        })
+
+}
+
+export const addReservationThunk = (reservation) => (dispatch) => {
+
+    // dispatch(addReservation({...reservation, roomNumber: 20}))
+
+    addReservationAPI(reservation)
+        .then((data)=>{
+
+            if(data.status==0){
+                dispatch(addReservation({
+                    ...reservation,
+                    roomNumber: data.reservation.room.roomNumber,
+                    hotelName: data.hotelName
+                }))
+            }
+
+        })
+        .catch(()=>{
+
+        })
 
 }
 

@@ -1,0 +1,200 @@
+.searchpage__wrapper {
+
+    text-align: start;
+    margin-top: 40px;
+
+}
+
+.hotel {
+
+    padding: 40px;
+    background: white;
+    color: black;
+    margin-bottom: 40px;
+
+}
+
+.hotel__header {
+
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid rgba(56, 56, 56, 0.575);
+
+}
+
+.hotel__name {
+
+    font-size: 2rem;
+    font-weight: 700;
+
+}
+
+.hotel__address {
+
+    font-size: 1.5rem;
+    font-weight: 500;
+
+}
+
+.roomtype__wrapper {
+
+    padding-top: 1rem;
+    display: flex;
+    flex-wrap: nowrap;
+    height: fit-content;
+    column-gap: 20px;
+    overflow: auto;
+
+}
+
+.roomtype {
+
+    min-width: 300px;
+    width: 300px;
+    padding: 20px;
+    border: 1px solid rgba(128, 128, 128, 0.301);
+
+}
+
+.roomtype__name {
+
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin: 10px 0;
+
+}
+
+.roomtype__img img {
+
+    width: 100%;
+
+}
+
+.roomtype__price {
+
+    font-size: 1.5rem;
+    text-align: end;
+    padding: 10px 0;
+    margin-top: 10px;
+    font-weight: 500;
+
+}
+
+.roomtype__button {
+
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(90deg, var(--g2c1), var(--g2c2));
+    background-size: 150%;
+    background-position: left;
+    color: white;
+    font-weight: 500;
+    transition: all 0.3s;
+
+}
+
+.roomtype__button:hover {
+
+    background-position: right;
+
+}
+
+.confirm__wrapper {
+
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    top: 0%;
+    left: 0%;
+    background: rgba(0, 0, 0, 0.300);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+
+}
+
+.confirm {
+
+    z-index: 2;
+    background: white;
+    color: black;
+    padding: 40px;
+
+}
+
+.confirm__mainheader {
+
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 20px;
+
+}
+
+.confirm__field{
+
+    margin: 15px 0;
+
+}
+
+.confirm__header {
+
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+
+}
+
+.confirm__filler {
+
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.confirm__confirmbutton {
+
+    display: block;
+    width: 100%;
+    border: none;
+    padding: 10px;
+    font-size: 1rem;
+    background: linear-gradient(-90deg, var(--g1c1), var(--g1c2));
+    background-size: 150%;
+    background-position: left;
+    border-radius: 5px;
+    color: white;
+    transition: all 0.3s;
+
+}
+
+.confirm__confirmbutton:hover {
+
+    background-position: right;
+
+}
+
+.confirm__cancelbutton {
+
+    display: block;
+    color: rgba(0, 0, 0, 0.719);
+    width: fit-content;
+    margin: 0 auto;
+    margin-top: 15px;
+    border: none;
+    background: white;
+    font-size: 0.9rem;
+    transition: all 0.3s;
+
+}
+
+.confirm__cancelbutton:hover {
+
+    color: rgb(0, 0, 0);
+
+}

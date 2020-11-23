@@ -1,13 +1,19 @@
 import {Ajax} from './axiosCreater';
 
-export const getRoomTypeListAPI = () => {
+export const getRoomTypeListAPI = (hotelId) => {
 
-    return Ajax.get('/getallhotels').then(data=>data.data)
+    return Ajax.get('/roomtype/getroomtypesforhotel/' + hotelId).then(data=>data.data)
 
 }
 
-export const deleteHotelAPI = (hotelId) => {
+export const deleteRoomTypeAPI = (hotelId, roomTypeId) => {
 
-    return Ajax.get('/hotel/delete', {hotelId}).then(data=>data.data)
+    return Ajax.delete('/roomtype/delete/?hotelId='+hotelId+"&roomTypeId="+roomTypeId).then(data=>data.data)
+
+}
+
+export const addRoomTypeAPI = (hotelId, roomType) => {
+
+    return Ajax.post('/roomtype/addroomtype', {...roomType, hotelId: hotelId}).then(data=>data.data)
 
 }

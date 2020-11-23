@@ -1,13 +1,10 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { deleteUserThunk, getSetUsersThunk } from '../../redux/adminReducer';
-import { deleteHotelThunk, getSetHotelsThunk } from '../../redux/hotelReducer';
 
 import s from './Admin.module.css';
 import AdminList from './AdminList/AdminList';
 
-const Admin = ({object, params, allObjects, id, parent, child}) => {
+const Admin = ({ object, params, allObjects, id, parent, child}) => {
 
     return (
 
@@ -27,7 +24,11 @@ const Admin = ({object, params, allObjects, id, parent, child}) => {
                         </Link>
                         : null}
 
-                    {id ? <h2>&nbsp;/ {id}</h2> : null}
+                    {id ? 
+                        <Link to={'/admin/'+parent+'/'+id} 
+                            className={s.admin__header_link}>
+                                &nbsp;/ {id}
+                        </Link> : null}
 
                     {child ? 
                         <Link 
@@ -65,9 +66,11 @@ const Admin = ({object, params, allObjects, id, parent, child}) => {
                         deleteObjectThunk={object.delete}
                         createObjectThunk={object.create}
                         isAddable={object.addable}
-                        link={object.link}
+                        isIdLinkable={object.isIdLinkable}
                         params = {params}
                         paramId={id}
+                        isIdChangable={object.isIdChangable}
+                        parentId={object.parentId}
                     />
                  }
 
@@ -81,30 +84,4 @@ const Admin = ({object, params, allObjects, id, parent, child}) => {
 
 }
 
-const mStP = (state) => {
-
-    return {
-
-        isAuth: state.auth.isAuth,
-        role: state.auth.profile.role,
-
-        hotels: state.hotel.hotels,
-
-        users: state.admin.users,
-        error: state.admin.error,
-        isFetching: state.admin.isFetching
-
-    }
-
-}
-
-export default connect(mStP,
-    {
-
-        getSetUsersThunk,
-        deleteUserThunk,
-
-        getSetHotelsThunk,
-        deleteHotelThunk
-
-    })(Admin);
+export default Admin;
