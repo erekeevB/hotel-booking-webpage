@@ -37,7 +37,7 @@ const hotelReducer = (state = initialState, action) => {
                 ...state,
                 hotels: {
                     ...state.hotels, 
-                    list: [...state.hotels.list.filter((hotel) => hotel.id !== action.hotelId)]
+                    list: [...state.hotels.list.filter((hotel) => hotel.hotelId !== action.hotelId)]
                 }
             }
         }

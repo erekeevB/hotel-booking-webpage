@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import {CloseIcon} from '../../../assets/Icons' 
+import {CloseIcon} from '../../assets/Icons' 
 
-import s from './AdminList.module.css';
+import s from './PanelList.module.css';
 
-const AdminList = (
+const PanelList = (
     {
         objectNames,
         objectList,
@@ -15,8 +15,7 @@ const AdminList = (
         isIdLinkable,
         params,
         paramId,
-        isIdChangable,
-        parentId
+        isIdChangable
     }
     ) => {
     
@@ -74,7 +73,7 @@ const AdminList = (
 
     for(let i = 0; i < objectList.length; i = i + 1){
 
-        if(i===10 && isCompact){
+        if(i===5 && isCompact){
             break
         }else{
             tempObjectList.push(
@@ -135,7 +134,7 @@ const AdminList = (
                         <div>
                             {isAdd ? 
                             <button 
-                                className={s.objectlist__button_close}
+                                className={s.objectlist__button+' '+s.objectlist__button_close}
                                 onClick={() => {setIsAdd(false)}}>
                                     <CloseIcon />
                             </button> :
@@ -199,4 +198,4 @@ const AdminList = (
 
 }
 
-export default AdminList;
+export default PanelList;

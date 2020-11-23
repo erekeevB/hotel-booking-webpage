@@ -6,6 +6,7 @@ import Main from '../Main/Main';
 import s from './Wrapper.module.css';
 import AdminContainer from '../Admin/AdminContainer';
 import SearchPage from '../SearchPage/SearchPage';
+import Manager from '../Manager/Manager';
 
 const Wrapper = () => {
 
@@ -29,6 +30,8 @@ const Wrapper = () => {
                     />
 
                     <Route path='/results' component={SearchPage} />
+
+                    <Route path='/manager/:child?' render={(match)=><Manager child={match.match.params.child}/>} />
 
                 </Switch>
 

@@ -4,6 +4,10 @@ const SET_USERS = 'SET_USERS';
 const DELETE_USER = 'DELETE_USER';
 const ADD_USER = 'ADD_USER';
 
+const SET_MANAGERS = 'SET_MANAGERS';
+const DELETE_MANAGERS = 'DELETE_MANAGERS';
+const ADD_MANAGERS = 'ADD_MANAGERS';
+
 const SET_ERROR = 'SET_ERROR';
 const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
 
@@ -13,6 +17,11 @@ let initialState = {
     users: {
         names: ['id','firstName', 'secondName', 'email', 'password'],
         compactNames: ['id','firstName', 'email'],
+        list: []
+    },
+    managers: {
+        names: ['id','firstName', 'secondName', 'email', 'hotelId', 'password'],
+        compactNames: ['id','firstName', 'hotelId'],
         list: []
     },
     error: '',

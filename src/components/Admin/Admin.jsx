@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import s from './Admin.module.css';
-import AdminList from './AdminList/AdminList';
+import AdminList from '../PanelList/PanelList';
 
 const Admin = ({ object, params, allObjects, id, parent, child}) => {
 

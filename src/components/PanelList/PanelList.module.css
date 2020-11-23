@@ -109,7 +109,7 @@
 
 }
 
-.objectlist__button_delete {
+.objectlist__button_delete, .objectlist__button_close {
 
     background: linear-gradient(-90deg, var(--g2c1), var(--g2c2));
     background-size: 150%;
@@ -121,13 +121,23 @@
 .objectlist__button_add {
 
     background: rgb(28, 164, 255);
-    background-size: 150%;
-    background-position: left;
-    transition: background-position 0.3s;
 
 }
 
-.objectlist__button_add:hover, .objectlist__button_delete:hover {
+.objectlist__button_close {
+
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.objectlist__button_close svg {
+    stroke-width: 20%;
+}
+
+.objectlist__button_delete:hover, .objectlist__button_close:hover {
 
     background-position: right;
 

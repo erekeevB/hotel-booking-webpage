@@ -14,6 +14,7 @@ let initialState = {
         email: '',
         phoneNumber: '',
         role: '',
+        hotelId: '',
         currentReservations: [],
         pastReservations: []
     },
@@ -94,12 +95,25 @@ const setNullProfile = (dispatch) => {
 
 const setTempProfile = (dispatch, data) => {
 
+    // let role
+
+    // switch(data.roles[0].name){
+    //     case 'ROLE_ADMIN':
+    //         role = 'Admin'
+    //     case 'ROLE_USER':
+    //         role = 'User'
+    //     case 'ROLE_MANAGER':
+    //         role = 'Manager'
+    //     case 'ROLE_EMPLOYEE':
+    //         role = 'Employee'
+    // }
+
     let tempProfile = {
         id: data.id,
         username: data.username,
         email: data.email,
         phoneNumber: data.phoneNumber,
-        // role: (data.roles[0].name==='ROLE_ADMIN') ? 'Admin' : 'User'
+        // role: role
         role: data.role
     };
     dispatch(setAuth(tempProfile, 1));
@@ -123,7 +137,7 @@ export const getSetAuthThunk = () => (dispatch) => {
         username: 'adsfa',
         email: 'afdad',
         phoneNumber: '3453453',
-        role: 'Admin'
+        role: 'Manager'
     });
 
     
@@ -165,7 +179,7 @@ export const loginUserThunk = (profile) => (dispatch) => {
         username: 'adsfa',
         email: 'afdad',
         phoneNumber: '3453453',
-        role: 'Admin'
+        role: 'Manager'
     });  
 
     // loginAPI(profile)
