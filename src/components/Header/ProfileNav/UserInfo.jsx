@@ -33,7 +33,21 @@ let UserInfo = ({profileNav, setProfileNav, setLogin, setBooking, ...props}) => 
                 </div> :
 
                 <div>
+                    {props.profile.role==='Admin' && 
+                    <div>
+                        <Link 
+                            onClick={()=>{
 
+                                setBooking(false)
+                                setProfileNav(false)
+
+                            }} 
+                            to='/admin'
+                        >
+                            Admin Page
+                        </Link>
+                    </div>
+}
                     <div>
                         <Link 
                             onClick={()=>{
@@ -47,11 +61,12 @@ let UserInfo = ({profileNav, setProfileNav, setLogin, setBooking, ...props}) => 
                             {props.profile.username}
                         </Link>
                     </div>
-                    <button onClick={() => {
+                    <button
+                        onClick={() => {
 
-                        props.logoutThunk()
-                        setBooking(false)
-                        setProfileNav(false)
+                            props.logoutThunk()
+                            setBooking(false)
+                            setProfileNav(false)
 
                     }}>Logout</button>
 
@@ -67,7 +82,7 @@ const mStP = (state) => {
     return {
 
         isAuth: state.auth.isAuth,
-        profile: state.auth.profile
+        profile: state.auth.profile,
 
     }
 

@@ -1,4 +1,4 @@
-import { getCityListAPI } from "../API/searchAPI";
+import { getCityListAPI, getSearchResultAPI } from "../API/searchAPI";
 
 const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
 
@@ -9,15 +9,13 @@ const CHANGE_INPUT_GUEST_NUM = 'CHANGE_INPUT_GUEST_NUM';
 const SET_INPUT_GUEST_NUM = 'SET_INPUT_GUEST_NUM';
 
 const SET_HOTELS = 'SET_HOTELS';
-const DELETE_HOTEL = 'DELETE_HOTEL';
-const ADD_HOTEL = 'ADD_HOTEL';
 
 const SET_ERROR = 'SET_ERROR';
 
 let initialState = {
 
     cities: [],
-    hotels: {},
+    hotels: [],
     input: {
         city: '',
         startDate: null,
@@ -162,36 +160,33 @@ export const searchThunk = () => (dispatch) => {
 
     let data = [
         {hotelId: 1, hotelName: 'ei', hotelAddress: 'Aktobe', roomTypes: [
-            {roomTypeId: 1, roomTypePeople: 10, roomTypeSize: 456, roomTypePrice: 20110
-            },
-            {roomTypeId: 2, roomTypePeople: 10, roomTypeSize: 456, roomTypePrice: 20110
-            }
+            {roomTypeId: 1, roomTypePeople: 10, roomTypeSize: 456, discountPrice: 20110, originalPrice: 30000},
+            {roomTypeId: 2, roomTypePeople: 10, roomTypeSize: 456, discountPrice: 20110, originalPrice: 30000}
         ]},
         {hotelId: 2, hotelName: 'B-)', hotelAddress: 'Aktobe', roomTypes: [
-            {roomTypeId: 1, roomTypePeople: 10, roomTypeSize: 456, roomTypePrice: 20110
-                },
-            {roomTypeId: 2, roomTypePeople: 10, roomTypeSize: 456, roomTypePrice: 20110
-                },
-            {roomTypeId: 3, roomTypePeople: 10, roomTypeSize: 456, roomTypePrice: 20110
-                },
+            {roomTypeId: 1, roomTypePeople: 10, roomTypeSize: 456, discountPrice: 20110, originalPrice: 30000},
+            {roomTypeId: 2, roomTypePeople: 10, roomTypeSize: 456, discountPrice: 20110, originalPrice: 30000},
+            {roomTypeId: 3, roomTypePeople: 10, roomTypeSize: 456, discountPrice: 20110, originalPrice: 30000}
         ]},
         {hotelId: 3, hotelName: 'op op op', hotelAddress: 'Aktobe', roomTypes: [
-            {roomTypeId: 1, roomTypePeople: 10, roomTypeSize: 456, roomTypePrice: 20110
-                }
+            {roomTypeId: 1, roomTypePeople: 10, roomTypeSize: 456, discountPrice: 20110, originalPrice: 30000}
         ]},
         {hotelId: 4, hotelName: 'grin', hotelAddress: 'Temirtau', roomTypes: [
-            {roomTypeId: 1, roomTypePeople: 10, roomTypeSize: 456, roomTypePrice: 20110
-                },
-            {roomTypeId: 2, roomTypePeople: 10, roomTypeSize: 456, roomTypePrice: 20110
-                },
-            {roomTypeId: 3, roomTypePeople: 10, roomTypeSize: 456, roomTypePrice: 20110
-                },
-            {roomTypeId: 4, roomTypePeople: 10, roomTypeSize: 456, roomTypePrice: 20110
-                }
+            {roomTypeId: 1, roomTypePeople: 10, roomTypeSize: 456, discountPrice: 20110, originalPrice: 30000},
+            {roomTypeId: 2, roomTypePeople: 10, roomTypeSize: 456, discountPrice: 20110, originalPrice: 30000},
+            {roomTypeId: 3, roomTypePeople: 10, roomTypeSize: 456, discountPrice: 20110, originalPrice: 30000},
+            {roomTypeId: 4, roomTypePeople: 10, roomTypeSize: 456, discountPrice: 20110, originalPrice: 30000}
         ]}
     ]
 
     dispatch(setHotels(data));
+
+    // getSearchResultAPI()
+    //     .then((data)=>{
+
+    //             dispatch(setHotels(data));
+
+    //     })
 
 }
 

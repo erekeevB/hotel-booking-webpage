@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import { addReservationThunk } from '../../redux/authReducer';
 import ConfirmationPopup from './ConfirmationPopup';
 import RoomTypeCard from './RoomTypeCard';
 
 import s from './SearchPage.module.css'
 
-const SearchPage = ({hotels, outDate, inDate, addReservationThunk}) => {
+const SearchPage = ({hotels, outDate, inDate, addReservationThunk, isAuth}) => {
 
     let [isField, setIsField] = useState('')
 
@@ -31,7 +32,7 @@ const SearchPage = ({hotels, outDate, inDate, addReservationThunk}) => {
             roomTypeId: roomType.roomTypeId,
             roomTypePeople: roomType.roomTypePeople,
             roomTypeSize: roomType.roomTypeSize,
-            roomTypePrice: roomType.roomTypePrice,
+            roomTypePrice: roomType.discountPrice,
             outDate,
             inDate
         })
@@ -40,7 +41,10 @@ const SearchPage = ({hotels, outDate, inDate, addReservationThunk}) => {
 
     return (
 
-        hotels.length ? 
+        <>
+        {!isAuth && <Redirect to='/'/>}
+
+        {hotels.length ? 
             <div className={s.searchpage__wrapper}>
                 {isField ? 
                     <ConfirmationPopup {...isField} setIsField={setIsField} handleSubmit={handleSubmit}/>
@@ -66,7 +70,8 @@ const SearchPage = ({hotels, outDate, inDate, addReservationThunk}) => {
                                             id={roomType.roomTypeId}
                                             maxNumPeople={roomType.roomTypePeople}
                                             size={roomType.roomTypeSize}
-                                            price={roomType.roomTypePrice}
+                                            price={roomType.originalPrice}
+                                            discountPrice={roomType.discountPrice}
                                             setReserveField={()=>{
                                                 handleSetField(hotel, roomType)
                                             }}
@@ -81,10 +86,10 @@ const SearchPage = ({hotels, outDate, inDate, addReservationThunk}) => {
                     )
                 })}
             </div>: 
-            <div>
+            <div className={s.searchpage__wrapper}>
                 Nothing Found :(
-            </div>
-            
+            </div>}
+        </>   
 
     )
 
@@ -97,7 +102,9 @@ let mStP = (state) => {
         hotels: state.search.hotels,
 
         inDate: state.search.input.startDate,
-        outDate: state.search.input.endDate
+        outDate: state.search.input.endDate,
+
+        isAuth: state.auth.isAuth
 
     }
 

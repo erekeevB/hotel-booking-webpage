@@ -82,6 +82,16 @@
 
 }
 
+.roomtype__oldprice {
+
+    font-size: 1rem;
+    text-align: end;
+    margin-bottom: 10px;
+    font-weight: 500;
+    text-decoration: line-through;
+
+}
+
 .roomtype__button {
 
     width: 100%;

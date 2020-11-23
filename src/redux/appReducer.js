@@ -41,18 +41,19 @@ export const initializeThunk = () => (dispatch) => {
     // })
 
 
-    let promise1 = dispatch(getSetAuthThunk()).then(()=>{
+    // let promise1 = dispatch(getSetAuthThunk()).then(()=>{
 
-        dispatch(initialize())
+    //     dispatch(getSetCitiesThunk());
+    //     dispatch(initialize())
 
-    })
+    // })
 
 
-    // dispatch(getSetAuthThunk())
+    dispatch(getSetAuthThunk())
 
-    // dispatch(getSetCitiesThunk());
+    dispatch(getSetCitiesThunk());
 
-    // dispatch(initialize())
+    dispatch(initialize())
 
 }
 

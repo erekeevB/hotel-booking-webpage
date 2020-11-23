@@ -8,6 +8,6 @@ export const getCityListAPI = () => {
 
 export const getSearchResultAPI = (form) => {
 
-    return Ajax.get('/hotel/cities', {...form}).then(data=>data.data)
+    return Ajax.get('/reserve/findrooms-withindate', {...form}).then(data=>data.data)
 
 }
