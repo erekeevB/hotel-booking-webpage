@@ -4,6 +4,9 @@
         var(--g1c1),
         var(--g1c2)
         );
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
     min-height: 100vh;
     color: white;
     padding-top: 40px;

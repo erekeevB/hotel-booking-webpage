@@ -14,10 +14,14 @@ const Header = () => {
 
             <div className={s.header}>
 
-                <Link className={s.header__grid1} to='/'>Frontovik</Link>
+                <Link className={s.header__grid1} to='/'>Srazu Hotel</Link>
                 <div>
                     {!booking ? 
-                        <button onClick={() => setBooking(true)}>Start Booking!</button> : 
+                        <button 
+                            className={s.header__bookingButton} 
+                            onClick={() => setBooking(true)}>
+                                Start Booking!
+                        </button> : 
                         <div></div>
                     }
                 </div>

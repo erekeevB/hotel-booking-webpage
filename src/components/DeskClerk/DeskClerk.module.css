@@ -1,0 +1,57 @@
+.deskclerk {
+
+    text-align: start;
+
+}
+
+.deskclerk__header {
+
+    display: flex;
+    margin: 1rem 0;
+
+}
+
+.deskclerk__header h2 {
+
+    margin: 0;
+
+}
+
+.deskclerk__header_link {
+
+    display: inline;
+    font-size: 1.5rem;
+    text-decoration: none;
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+
+}
+
+.deskclerk__header_after {
+
+    display: inline;
+
+}
+
+.deskclerk__panels {
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: repeat(auto-fit, minmax(100px, 1fr));
+    row-gap: 20px;
+    column-gap: 20px;
+
+}
+
+.deskclerk__panels__employees {
+
+    grid-column: 1 / 3;
+
+}
+
+.deskclerk__panels__seasons {
+
+    grid-column: span 3;
+
+}

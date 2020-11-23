@@ -137,7 +137,7 @@ export const getSetAuthThunk = () => (dispatch) => {
         username: 'adsfa',
         email: 'afdad',
         phoneNumber: '3453453',
-        role: 'Manager'
+        role: 'DeskClerk'
     });
 
     

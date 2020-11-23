@@ -7,6 +7,7 @@ import roomReducer from './roomReducer';
 import roomTypeReducer from './roomTypeReducer';
 import searchReducer from './searchReducer';
 import managerReducer from './managerReducer';
+import deskClerkReducer from './deskClerkReducer';
 
 const { createStore, combineReducers, applyMiddleware } = require("redux");
 
@@ -19,6 +20,7 @@ let reducers = combineReducers({
     roomType: roomTypeReducer,
     search: searchReducer,
     manager: managerReducer,
+    deskClerk: deskClerkReducer,
     app: appReducer
     
 })

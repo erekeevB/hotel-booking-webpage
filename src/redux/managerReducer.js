@@ -1,4 +1,4 @@
-import { getEmployeesAPI, addEmployeeAPI, deleteEmployeeAPI } from "../API/managerAPI";
+import { getEmployeesAPI, addEmployeeAPI, deleteEmployeeAPI, getSeasonsAPI } from "../API/managerAPI";
 
 const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
 
@@ -217,27 +217,27 @@ export const getSetSeasonsThunk = () => (dispatch) => {
 
     let data = [
         {hotelId: 1, seasonId: 213, seasonInDate: '10-10-2020', seasonOutDate: '10-12-2020', seasonDiscount: 20},
-        {hotelId: 2, seasonId: 213, seasonInDate: '10-10-2020', seasonOutDate: '10-12-2020', seasonDiscount: 20},
-        {hotelId: 3, seasonId: 213, seasonInDate: '10-10-2020', seasonOutDate: '10-12-2020', seasonDiscount: 20},
-        {hotelId: 4, seasonId: 213, seasonInDate: '10-10-2020', seasonOutDate: '10-12-2020', seasonDiscount: 20},
-        {hotelId: 5, seasonId: 213, seasonInDate: '10-10-2020', seasonOutDate: '10-12-2020', seasonDiscount: 20}
+        {hotelId: 2, seasonId: 214, seasonInDate: '10-10-2020', seasonOutDate: '10-12-2020', seasonDiscount: 20},
+        {hotelId: 3, seasonId: 215, seasonInDate: '10-10-2020', seasonOutDate: '10-12-2020', seasonDiscount: 20},
+        {hotelId: 4, seasonId: 216, seasonInDate: '10-10-2020', seasonOutDate: '10-12-2020', seasonDiscount: 20},
+        {hotelId: 5, seasonId: 273, seasonInDate: '10-10-2020', seasonOutDate: '10-12-2020', seasonDiscount: 20}
     ]
 
     dispatch(setSeasons(data));
 
-
+    
     // dispatch(toggleFetch(true));
 
-    // getEmployeesAPI()
+    // getSeasonsAPI()
     //     .then((data) => {
 
-    //         dispatch(setEmployees(data));
+    //         dispatch(setSeasons(data));
     //         dispatch(setError(''));
 
     //     })
     //     .catch(() => {
 
-    //         dispatch(setEmployees([]));
+    //         dispatch(setSeasons([]));
     //         dispatch(setError('Error connecting to server!'));
 
     //     })
@@ -255,7 +255,7 @@ export const deleteSeasonThunk = (id) => (dispatch) => {
 
     //         if (data.status === 0) {
 
-    //             dispatch(deleteEmployee(id));
+    //             dispatch(deleteSeason(id));
 
     //             dispatch(setError(''));
 
@@ -284,7 +284,7 @@ export const addSeasonThunk = (employee) => (dispatch) => {
 
     //         if (data.status === 0) {
 
-    //             dispatch(addEmployee(data.employee));
+    //             dispatch(addSeason(data.employee));
 
     //             dispatch(setError(''));
 

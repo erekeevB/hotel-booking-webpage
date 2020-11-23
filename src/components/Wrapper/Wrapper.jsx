@@ -7,6 +7,7 @@ import s from './Wrapper.module.css';
 import AdminContainer from '../Admin/AdminContainer';
 import SearchPage from '../SearchPage/SearchPage';
 import Manager from '../Manager/Manager';
+import DeskClerk from '../DeskClerk/DeskClerk';
 
 const Wrapper = () => {
 
@@ -32,6 +33,8 @@ const Wrapper = () => {
                     <Route path='/results' component={SearchPage} />
 
                     <Route path='/manager/:child?' render={(match)=><Manager child={match.match.params.child}/>} />
+
+                    <Route path='/deskclerk' component={DeskClerk} />
 
                 </Switch>
 

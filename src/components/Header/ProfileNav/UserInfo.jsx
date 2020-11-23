@@ -63,6 +63,21 @@ let UserInfo = ({profileNav, setProfileNav, setLogin, setBooking, ...props}) => 
                             </Link>
                         </div>
                     }
+                    {props.profile.role==='DeskClerk' && 
+                        <div>
+                            <Link 
+                                onClick={()=>{
+
+                                    setBooking(false)
+                                    setProfileNav(false)
+
+                                }} 
+                                to='/deskclerk'
+                            >
+                                Desc Clerk Page
+                            </Link>
+                        </div>
+                    }
                     <div>
                         <Link 
                             onClick={()=>{

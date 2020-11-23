@@ -19,7 +19,7 @@ const ProfileNav = function({setBooking}){
 
             <div className={s.profileNav}>
 
-                <button onClick={() => setProfileNav(!profileNav)}>
+                <button className={s.profileNav__button} onClick={() => setProfileNav(!profileNav)}>
                     <HamburgerIcon />
                     <UserIcon />
                 </button>

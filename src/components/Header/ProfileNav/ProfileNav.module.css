@@ -28,3 +28,29 @@
     outline: none;
 
 }
+
+.profileNav__button {
+
+    padding: 10px 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 10px;
+    border: 2px solid rgba(0, 0, 0, 0.425);
+    background: white;
+    transition: all 0.3s;
+
+}
+
+.profileNav__button svg {
+
+    margin: 2px;
+
+}
+
+.profileNav__button:hover, .profileNav__button:focus {
+
+    border: 2px solid var(--g2c2);
+
+}

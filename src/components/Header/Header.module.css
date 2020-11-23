@@ -42,11 +42,36 @@
 .header__grid1 {
 
     justify-self: self-start;
+    font-weight: 500;
+    color: black;
+    font-size: 1.2rem;
 
 }
 
 .header__grid2 {
 
     justify-self: self-end;
+
+}
+
+.header__bookingButton {
+
+    padding: 15px;
+    width: 100%;
+    font-size: 1.1rem;
+    font-weight: 500;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(-90deg, var(--g2c1), var(--g2c2));
+    background-size: 200%;
+    background-position: left;
+    transition: all 0.3s;
+    color: white;
+
+}
+
+.header__bookingButton:hover {
+
+    background-position: right;
 
 }
