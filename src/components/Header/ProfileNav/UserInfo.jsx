@@ -33,51 +33,45 @@ let UserInfo = ({profileNav, setProfileNav, setLogin, setBooking, ...props}) => 
                 </div> :
 
                 <div>
-                    {props.profile.role==='Admin' && 
-                        <div>
-                            <Link 
-                                onClick={()=>{
+                    <div>
+                        <Link 
+                            onClick={()=>{
 
-                                    setBooking(false)
-                                    setProfileNav(false)
+                                setBooking(false)
+                                setProfileNav(false)
 
-                                }} 
-                                to='/admin'
-                            >
-                                Admin Page
-                            </Link>
-                        </div>
-                    }
-                    {props.profile.role==='Manager' && 
-                        <div>
-                            <Link 
-                                onClick={()=>{
+                            }} 
+                            to='/admin'
+                        >
+                            Admin Page
+                        </Link>
+                    </div>
+                    <div>
+                        <Link 
+                            onClick={()=>{
 
-                                    setBooking(false)
-                                    setProfileNav(false)
+                                setBooking(false)
+                                setProfileNav(false)
 
-                                }} 
-                                to='/manager'
-                            >
-                                Manager Page
-                            </Link>
-                        </div>
-                    }
-                    {props.profile.role==='DeskClerk' && 
-                        <div>
-                            <Link 
-                                onClick={()=>{
+                            }} 
+                            to='/manager'
+                        >
+                            Manager Page
+                        </Link>
+                    </div>
+                    <div>
+                        <Link 
+                            onClick={()=>{
 
-                                    setBooking(false)
-                                    setProfileNav(false)
+                                setBooking(false)
+                                setProfileNav(false)
 
-                                }} 
-                                to='/deskclerk'
-                            >
-                                Desc Clerk Page
-                            </Link>
-                        </div>
-                    }
+                            }} 
+                            to='/deskclerk'
+                        >
+                            Desc Clerk Page
+                        </Link>
+                    </div>
                     <div>
                         <Link 
                             onClick={()=>{

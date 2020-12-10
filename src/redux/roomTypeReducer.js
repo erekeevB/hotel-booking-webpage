@@ -64,92 +64,92 @@ export const addRoomType = (roomType) => ({ type: ADD_ROOM_TYPE, roomType });
 
 export const getSetRoomTypesThunk = (hotelId) => (dispatch) => {
 
-    // let data = [
-    //     {roomTypeId: 1, roomTypePeople: 'asdas', roomTypeSize: 'asdasda', roomTypePrice: 20110},
-    //     {roomTypeId: 2, roomTypePeople: 'asdas', roomTypeSize: 'asdasda', roomTypePrice: 20110},
-    //     {roomTypeId: 3, roomTypePeople: 'asdas', roomTypeSize: 'asdasda', roomTypePrice: 20110},
-    //     {roomTypeId: 4, roomTypePeople: 'asdas', roomTypeSize: 'asdasda', roomTypePrice: 20110}
-    // ]
+    let data = [
+        {roomTypeId: 1, roomTypePeople: 'asdas', roomTypeSize: 'asdasda', roomTypePrice: 20110},
+        {roomTypeId: 2, roomTypePeople: 'asdas', roomTypeSize: 'asdasda', roomTypePrice: 20110},
+        {roomTypeId: 3, roomTypePeople: 'asdas', roomTypeSize: 'asdasda', roomTypePrice: 20110},
+        {roomTypeId: 4, roomTypePeople: 'asdas', roomTypeSize: 'asdasda', roomTypePrice: 20110}
+    ]
 
-    // debugger
+    debugger
 
-    // dispatch(setRoomTypes(data));
+    dispatch(setRoomTypes(data));
 
 
-    dispatch(toggleFetch(true));
+    // dispatch(toggleFetch(true));
 
-    getRoomTypeListAPI(hotelId)
-        .then((data) => {
+    // getRoomTypeListAPI(hotelId)
+    //     .then((data) => {
 
-            dispatch(setRoomTypes(data));
-            dispatch(setError(''));
+    //         dispatch(setRoomTypes(data));
+    //         dispatch(setError(''));
 
-        })
-        .catch(() => {
+    //     })
+    //     .catch(() => {
 
-            dispatch(setRoomTypes([]));
-            dispatch(setError('Error connecting to server!'));
+    //         dispatch(setRoomTypes([]));
+    //         dispatch(setError('Error connecting to server!'));
 
-        })
+    //     })
         
 
 }
 
 export const deleteRoomTypeThunk = (hotelId, roomTypeId) => (dispatch) => {
 
-    // dispatch(deleteHotel(hotelId));
+    dispatch(deleteRoomType(roomTypeId));
 
 
-    deleteRoomTypeAPI(hotelId, roomTypeId)
-        .then(data => {
+    // deleteRoomTypeAPI(hotelId, roomTypeId)
+    //     .then(data => {
 
-            if (data.status === 0) {
+    //         if (data.status === 0) {
 
-                dispatch(deleteRoomType(roomTypeId));
+    //             dispatch(deleteRoomType(roomTypeId));
 
-                dispatch(setError(''));
+    //             dispatch(setError(''));
 
-            } else {
+    //         } else {
 
-                dispatch(setError('Something went wrong!'));
+    //             dispatch(setError('Something went wrong!'));
 
-            }
+    //         }
 
-        })
-        .catch(() => {
+    //     })
+    //     .catch(() => {
 
-            dispatch(setError('Something went wrong!'));
+    //         dispatch(setError('Something went wrong!'));
 
-        })
+    //     })
 
 }
 
 export const addRoomTypeThunk = (hotelId, roomTypeId) => (dispatch) => {
 
-    // dispatch(addRoom(room));
+    dispatch(addRoomType());
 
 
-    addRoomTypeAPI(hotelId, roomTypeId)
-        .then(data => {
+    // addRoomTypeAPI(hotelId, roomTypeId)
+    //     .then(data => {
 
-            if (data.status === 0) {
+    //         if (data.status === 0) {
 
-                dispatch(addRoomType(data.roomType));
+    //             dispatch(addRoomType(data.roomType));
 
-                dispatch(setError(''));
+    //             dispatch(setError(''));
 
-            } else {
+    //         } else {
 
-                dispatch(setError('This RoomType already exists.'));
+    //             dispatch(setError('This RoomType already exists.'));
 
-            }
+    //         }
 
-        })
-        .catch(() => {
+    //     })
+    //     .catch(() => {
 
-            dispatch(setError('Something went wrong!'));
+    //         dispatch(setError('Something went wrong!'));
 
-        })
+    //     })
 
 }
 

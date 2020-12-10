@@ -49,7 +49,7 @@ const Manager = (
 
         <div className={s.manager}>
 
-            {profile.role !== 'Manager' && <Redirect to='/' />}
+            {/* {profile.role !== 'Manager' && <Redirect to='/' />} */}
 
             <div className={s.manager__wrapper}>
 

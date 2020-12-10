@@ -7,9 +7,12 @@ const Main = () => {
     return (
 
         <div className={s.main__content}>
-                <Link to='/profile'>ProfilePage </Link>
-                <Link to='/admin'>AdminPage</Link> <br/>
+            <div>
+                <div className={s.main__header}>Best Hotel Chain Website in Kazakhstan</div>
+                <div className={s.question}>Want to Book a Room in one of the best Hotels in Kazakhstan with an
+                 affordable price?</div>
             </div>
+        </div>
 
     )
 

@@ -80,90 +80,90 @@ export const addHotel = (hotel) => ({ type: ADD_HOTEL, hotel });
 //-----HOTEL------
 export const getSetHotelsThunk = () => (dispatch) => {
 
-    // let data = [
-    //     {hotelId: 1, hotelName: 'asdas', hotelAddress: 'asdasda'},
-    //     {hotelId: 2, hotelName: 'asdas', hotelAddress: 'asdasda'},
-    //     {hotelId: 3, hotelName: 'asdas', hotelAddress: 'asdasda'},
-    //     {hotelId: 4, hotelName: 'asdas', hotelAddress: 'asdasda'}
-    // ]
+    let data = [
+        {hotelId: 1, hotelName: 'asdas', hotelAddress: 'asdasda'},
+        {hotelId: 2, hotelName: 'asdas', hotelAddress: 'asdasda'},
+        {hotelId: 3, hotelName: 'asdas', hotelAddress: 'asdasda'},
+        {hotelId: 4, hotelName: 'asdas', hotelAddress: 'asdasda'}
+    ]
 
-    // dispatch(setHotels(data));
+    dispatch(setHotels(data));
 
 
-    dispatch(toggleFetch(true));
+    // dispatch(toggleFetch(true));
 
-    getHotelListAPI()
-        .then((data) => {
+    // getHotelListAPI()
+    //     .then((data) => {
 
-            dispatch(setHotels(data));
-            dispatch(setError(''));
+    //         dispatch(setHotels(data));
+    //         dispatch(setError(''));
 
-        })
-        .catch(() => {
+    //     })
+    //     .catch(() => {
 
-            dispatch(setHotels([]));
-            dispatch(setError('Error connecting to server!'));
+    //         dispatch(setHotels([]));
+    //         dispatch(setError('Error connecting to server!'));
 
-        })
+    //     })
         
 
 }
 
 export const deleteHotelThunk = (hotelId) => (dispatch) => {
 
-    // dispatch(deleteHotel(hotelId));
+    dispatch(deleteHotel(hotelId));
 
 
-    deleteHotelAPI(hotelId)
-        .then(data => {
+    // deleteHotelAPI(hotelId)
+    //     .then(data => {
 
-            if (data.status === 0) {
+    //         if (data.status === 0) {
 
-                dispatch(deleteHotel(hotelId));
+    //             dispatch(deleteHotel(hotelId));
 
-                dispatch(setError(''));
+    //             dispatch(setError(''));
 
-            } else {
+    //         } else {
 
-                dispatch(setError('Something went wrong!'));
+    //             dispatch(setError('Something went wrong!'));
 
-            }
+    //         }
 
-        })
-        .catch(() => {
+    //     })
+    //     .catch(() => {
 
-            dispatch(setError('Something went wrong!'));
+    //         dispatch(setError('Something went wrong!'));
 
-        })
+    //     })
 
 }
 
 export const addHotelThunk = (hotel) => (dispatch) => {
 
-    // dispatch(addHotel(hotel));
+    dispatch(addHotel(hotel));
 
 
-    addHotelAPI(hotel)
-        .then(data => {
+    // addHotelAPI(hotel)
+    //     .then(data => {
 
-            if (data.status === 0) {
+    //         if (data.status === 0) {
 
-                dispatch(addHotel(data.hotel));
+    //             dispatch(addHotel(data.hotel));
 
-                dispatch(setError(''));
+    //             dispatch(setError(''));
 
-            } else {
+    //         } else {
 
-                dispatch(setError('This Hotel already exists.'));
+    //             dispatch(setError('This Hotel already exists.'));
 
-            }
+    //         }
 
-        })
-        .catch(() => {
+    //     })
+    //     .catch(() => {
 
-            dispatch(setError('Something went wrong!'));
+    //         dispatch(setError('Something went wrong!'));
 
-        })
+    //     })
 
 }
 

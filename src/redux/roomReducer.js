@@ -65,90 +65,90 @@ export const addRoom = (room) => ({ type: ADD_ROOM, room });
 
 export const getSetRoomsThunk = (hotelId) => (dispatch) => {
 
-    // let data = [
-    //     {roomNumber: 1024, hotelId: 1, roomTypeId: 1, roomFloor: 23},
-    //     {roomNumber: 2232, hotelId: 1, roomTypeId: 2, roomFloor: 24},
-    //     {roomNumber: 323, hotelId: 1, roomTypeId: 1, roomFloor: 25},
-    //     {roomNumber: 423, hotelId: 1, roomTypeId: 2, roomFloor: 24}
-    // ]
+    let data = [
+        {roomNumber: 1024, hotelId: 1, roomTypeId: 1, roomFloor: 23},
+        {roomNumber: 2232, hotelId: 1, roomTypeId: 2, roomFloor: 24},
+        {roomNumber: 323, hotelId: 1, roomTypeId: 1, roomFloor: 25},
+        {roomNumber: 423, hotelId: 1, roomTypeId: 2, roomFloor: 24}
+    ]
 
-    // dispatch(setRooms(data));
+    dispatch(setRooms(data));
 
 
-    dispatch(toggleFetch(true));
+    // dispatch(toggleFetch(true));
 
-    getRoomListAPI(hotelId)
-        .then((data) => {
+    // getRoomListAPI(hotelId)
+    //     .then((data) => {
 
-            dispatch(setRooms(data));
-            dispatch(setError(''));
+    //         dispatch(setRooms(data));
+    //         dispatch(setError(''));
 
-        })
-        .catch(() => {
+    //     })
+    //     .catch(() => {
 
-            dispatch(setRooms([]));
-            dispatch(setError('Error connecting to server!'));
+    //         dispatch(setRooms([]));
+    //         dispatch(setError('Error connecting to server!'));
 
-        })
+    //     })
         
 
 }
 
 export const deleteRoomThunk = (hotelId, roomId) => (dispatch) => {
 
-    // dispatch(deleteRoom(roomId));
+    dispatch(deleteRoom(roomId));
 
 
-    deleteRoomAPI(hotelId, roomId)
-        .then(data => {
+    // deleteRoomAPI(hotelId, roomId)
+    //     .then(data => {
 
-            if (data.status === 0) {
+    //         if (data.status === 0) {
 
-                dispatch(deleteRoom(roomId));
+    //             dispatch(deleteRoom(roomId));
 
-                dispatch(setError(''));
+    //             dispatch(setError(''));
 
-            } else {
+    //         } else {
 
-                dispatch(setError('Something went wrong!'));
+    //             dispatch(setError('Something went wrong!'));
 
-            }
+    //         }
 
-        })
-        .catch(() => {
+    //     })
+    //     .catch(() => {
 
-            dispatch(setError('Something went wrong!'));
+    //         dispatch(setError('Something went wrong!'));
 
-        })
+    //     })
 
 }
 
 export const addRoomThunk = (hotelId, room) => (dispatch) => {
 
-    // dispatch(addRoom(room));
+    dispatch(addRoom(room));
 
 
-    addRoomAPI(hotelId, room)
-        .then(data => {
+    // addRoomAPI(hotelId, room)
+    //     .then(data => {
 
-            if (data.status === 0) {
+    //         if (data.status === 0) {
 
-                dispatch(addRoom(data.room));
+    //             dispatch(addRoom(data.room));
 
-                dispatch(setError(''));
+    //             dispatch(setError(''));
 
-            } else {
+    //         } else {
 
-                dispatch(setError('This Room already exists.'));
+    //             dispatch(setError('This Room already exists.'));
 
-            }
+    //         }
 
-        })
-        .catch(() => {
+    //     })
+    //     .catch(() => {
 
-            dispatch(setError('Something went wrong!'));
+    //         dispatch(setError('Something went wrong!'));
 
-        })
+    //     })
 
 }
 

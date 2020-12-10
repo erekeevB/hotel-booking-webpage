@@ -76,60 +76,60 @@ const toggleFetch = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isFetching });
 
 export const getSetUsersThunk = () => (dispatch) => {
 
-    // let data = [
-    //     {id: 1, firstName: 'asdas', email: 'asdasda', secondName: 'asdasda'},
-    //     {id: 2, firstName: 'asdas', email: 'asdasda', secondName: 'asdasda'},
-    //     {id: 3, firstName: 'asdas', email: 'asdasda', secondName: 'asdasda'},
-    //     {id: 4, firstName: 'asdas', email: 'asdasda', secondName: 'asdasda'}
-    // ]
+    let data = [
+        {id: 1, firstName: 'asdas', email: 'asdasda', secondName: 'asdasda'},
+        {id: 2, firstName: 'asdas', email: 'asdasda', secondName: 'asdasda'},
+        {id: 3, firstName: 'asdas', email: 'asdasda', secondName: 'asdasda'},
+        {id: 4, firstName: 'asdas', email: 'asdasda', secondName: 'asdasda'}
+    ]
 
-    // dispatch(setUsers(data));
+    dispatch(setUsers(data));
 
 
-    dispatch(toggleFetch(true));
-    debugger
-    getUsersAPI()
-        .then((data) => {
+    // dispatch(toggleFetch(true));
+    // debugger
+    // getUsersAPI()
+    //     .then((data) => {
 
-            dispatch(setUsers(data));
-            dispatch(setError(''));
+    //         dispatch(setUsers(data));
+    //         dispatch(setError(''));
 
-        })
-        .catch(() => {
+    //     })
+    //     .catch(() => {
 
-            dispatch(setUsers([]));
-            dispatch(setError(''));
+    //         dispatch(setUsers([]));
+    //         dispatch(setError(''));
 
-        })
+    //     })
 
 }
 
 export const deleteUserThunk = (userId) => (dispatch) => {
 
-    // dispatch(deleteUser(userId));
+    dispatch(deleteUser(userId));
 
 
-    deleteUserAPI(userId)
-        .then(data => {
+    // deleteUserAPI(userId)
+    //     .then(data => {
 
-            if (data.status === 0) {
+    //         if (data.status === 0) {
 
-                dispatch(deleteUser(userId));
+    //             dispatch(deleteUser(userId));
 
-                dispatch(setError(''));
+    //             dispatch(setError(''));
 
-            } else {
+    //         } else {
 
-                dispatch(setError(data.message));
+    //             dispatch(setError(data.message));
 
-            }
+    //         }
 
-        })
-        .catch(() => {
+    //     })
+    //     .catch(() => {
 
-            dispatch(setError('Something went wrong!'));
+    //         dispatch(setError('Something went wrong!'));
 
-        })
+    //     })
 
 }
 

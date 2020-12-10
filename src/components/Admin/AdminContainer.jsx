@@ -88,7 +88,7 @@ const AdminContainer = ({
 
         <div>
 
-        {!(isAuth && role==='Admin') && <Redirect to='/' />}
+        {/* {!(isAuth && role==='Admin') && <Redirect to='/' />} */}
 
         <Switch>
 

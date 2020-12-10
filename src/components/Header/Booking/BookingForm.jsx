@@ -31,12 +31,12 @@ const BookingForm = ({setBooking, startDate, endDate, city, adultNum, childrenNu
 
         let temp = {
             city: city,
-            inDate: startDate,
-            outDate: endDate,
+            inDate: startDate.toString(),
+            outDate: endDate.toString(),
             people: adultNum + childrenNum
         }
 
-        props.searchThunk()
+        props.searchThunk(temp)
 
         history.push('/results')
 

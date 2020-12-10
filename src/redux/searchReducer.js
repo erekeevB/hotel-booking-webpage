@@ -184,7 +184,7 @@ export const searchThunk = () => (dispatch) => {
     // getSearchResultAPI()
     //     .then((data)=>{
 
-    //             dispatch(setHotels(data));
+                //dispatch(setHotels(data));
 
     //     })
 
