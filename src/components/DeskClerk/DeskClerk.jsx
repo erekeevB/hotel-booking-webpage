@@ -37,10 +37,7 @@ const DeskClerk = (
                 <PanelList
                     objectNames={reservations.names}
                     objectList={reservations.list}
-                    deleteObjectThunk={deleteReservationThunk}
-                    createObjectThunk={addReservationThunk}
-                    isAddable={true}
-                    isIdChangable={true}
+                    isAddable={false}
                 />
 
         </div>

@@ -44,7 +44,11 @@ const roomTypeReducer = (state = initialState, action) => {
                 ...state,
                 roomTypes: {
                     ...state.roomTypes,
-                    list: [...state.roomTypes.list, action.roomType]
+                    list: [...state.roomTypes.list, 
+                        {
+                            ...action.roomType, 
+                            roomTypeId: state.roomTypes.list.length + 1
+                        }]
                 }
             }
         }
@@ -70,8 +74,6 @@ export const getSetRoomTypesThunk = (hotelId) => (dispatch) => {
         {roomTypeId: 3, roomTypePeople: 'asdas', roomTypeSize: 'asdasda', roomTypePrice: 20110},
         {roomTypeId: 4, roomTypePeople: 'asdas', roomTypeSize: 'asdasda', roomTypePrice: 20110}
     ]
-
-    debugger
 
     dispatch(setRoomTypes(data));
 
@@ -124,9 +126,11 @@ export const deleteRoomTypeThunk = (hotelId, roomTypeId) => (dispatch) => {
 
 }
 
-export const addRoomTypeThunk = (hotelId, roomTypeId) => (dispatch) => {
+export const addRoomTypeThunk = (roomtype) => (dispatch) => {
 
-    dispatch(addRoomType());
+    debugger
+
+    dispatch(addRoomType(roomtype));
 
 
     // addRoomTypeAPI(hotelId, roomTypeId)

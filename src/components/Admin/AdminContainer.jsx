@@ -57,9 +57,7 @@ const AdminContainer = ({
             roomTypes,
             delete: deleteRoomTypeThunk,
             create: addRoomTypeThunk,
-            addable: true,
-            isIdChangable: true
-
+            addable: true
         }
     }
 

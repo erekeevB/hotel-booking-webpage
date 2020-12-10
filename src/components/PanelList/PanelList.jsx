@@ -41,15 +41,20 @@ const PanelList = (
 
     const handleSubmit = () => {
 
-        if(paramId){
+        debugger
 
-            createObjectThunk(paramId, field)
+        // if(paramId){
 
-        }else{
+        //     createObjectThunk(paramId, field)
+
+        // }else{
         
-            createObjectThunk(field)
+        //     createObjectThunk(field)
 
-        }
+        // }
+
+        createObjectThunk(field)
+        
 
         setField(tempField)
 
@@ -106,7 +111,7 @@ const PanelList = (
 
                     })}
 
-                    {!isCompact &&
+                    {(!isCompact && deleteObjectThunk) &&
 
                         <div className={s.objectlist__button_wrapper}>
                             <button
