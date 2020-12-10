@@ -55,6 +55,7 @@ const Admin = ({ object, params, allObjects, id, parent, child}) => {
                             <AdminList
                                 objectNames={allObjects.hotels.hotels.compactNames}
                                 objectList={allObjects.hotels.hotels.list}
+                                isIdLinkable={allObjects.hotels.isIdLinkable}
                                 isCompact={"/admin/hotels"}
                             />
                         </div>

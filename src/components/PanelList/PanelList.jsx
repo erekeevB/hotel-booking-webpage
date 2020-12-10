@@ -81,6 +81,15 @@ const PanelList = (
 
                     {objectNames.map((name, index)=>{
                         if(isIdLinkable && index===0){
+                            if(isCompact){
+                                return (
+                                    <div>
+                                        <Link to={isCompact+'/'+objectList[i][name]}>
+                                            {objectList[i][name]}
+                                        </Link>
+                                    </div>
+                                )
+                            }
                             return (
                                 <div>
                                     <Link to={'/admin/'+params+'/'+objectList[i][name]}>
